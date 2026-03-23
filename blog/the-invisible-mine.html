@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Invisible Mine: What AI Really Costs the Global South | Karen Safo-Barnieh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .article-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 8rem 2.5rem 4rem;
+            background: var(--noir);
+            position: relative;
+        }
+        .article-hero-content {
+            max-width: 1240px;
+            margin: 0 auto;
+            width: 100%;
+            padding-bottom: 4rem;
+        }
+        .article-category {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 0.35rem 0.85rem;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .article-hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.15;
+            max-width: 800px;
+            letter-spacing: -0.02em;
+        }
+        .article-hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+        }
+        .article-meta {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .article-meta span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .article-meta-divider {
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+        }
+        .article-body {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 5rem 2.5rem 8rem;
+        }
+        .article-body p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--text-body);
+            line-height: 2;
+            margin-bottom: 1.75rem;
+            letter-spacing: 0.01em;
+        }
+        .article-body p:first-of-type::first-letter {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            font-weight: 400;
+            float: left;
+            line-height: 0.8;
+            margin-right: 0.5rem;
+            margin-top: 0.15rem;
+            color: var(--gold);
+        }
+        .article-body h2 {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin: 3rem 0 1.5rem;
+            line-height: 1.3;
+        }
+        .article-body blockquote {
+            border-left: 2px solid var(--gold);
+            padding-left: 2rem;
+            margin: 2.5rem 0;
+        }
+        .article-body blockquote p {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        .article-body .stat-block {
+            background: var(--cream-dark);
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+            border-left: 2px solid var(--gold);
+        }
+        .article-body .stat-block p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .article-body .stat-block strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        .article-back {
+            text-align: center;
+            padding: 0 2.5rem 5rem;
+        }
+        .article-back a {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            transition: all 0.3s var(--ease);
+        }
+        .article-back a:hover {
+            letter-spacing: 0.2em;
+        }
+        .article-author {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 2.5rem 5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            border-top: 1px solid var(--border);
+            padding-top: 3rem;
+        }
+        .article-author-info strong {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: block;
+            letter-spacing: 0.05em;
+        }
+        .article-author-info span {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: var(--text-muted);
+        }
+        @media (max-width: 768px) {
+            .article-hero { min-height: 50vh; padding: 6rem 1.5rem 3rem; }
+            .article-body { padding: 3rem 1.5rem 5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="../index.html#home" class="nav-logo">KAREN SAFO<span class="accent">-</span>BARNIEH</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#services">Practice</a></li>
+                <li><a href="../index.html#advisory">Advisory</a></li>
+                <li><a href="../index.html#insights">Journal</a></li>
+                <li><a href="../index.html#contact" class="nav-cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Article Hero -->
+    <section class="article-hero">
+        <div class="article-hero-content">
+            <span class="article-category">AI &amp; Environment</span>
+            <h1>The Invisible Mine: What AI Really Costs the <em>Global South</em></h1>
+            <div class="article-meta">
+                <span>Karen Safo-Barnieh</span>
+                <div class="article-meta-divider"></div>
+                <span>March 2026</span>
+                <div class="article-meta-divider"></div>
+                <span>8 min read</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Body -->
+    <article class="article-body">
+        <p>Somewhere in the south-east of the Democratic Republic of Congo, a child is digging. The hole is narrow, hand-carved, deep enough that daylight barely reaches the bottom. He is looking for cobalt &mdash; a blue-grey mineral that most people in London or San Francisco have never heard of, but that lives inside every device they own. Their phones, their laptops, the servers that power the AI tools they use to draft emails, generate images, and summarise documents in seconds. The distance between that child's hands and your screen is shorter than you think.</p>
+
+        <p>I grew up in Ghana. I know what extraction looks like &mdash; not from textbooks, but from the landscape itself. I watched communities live alongside gold mines that made other people rich. I saw rivers change colour. I founded Youth Development Ghana when I was seventeen because I could see, even then, that the rules of global trade were not written with us in mind. That feeling has never left me. It is the reason I became a barrister, and it is the reason I am writing this now.</p>
+
+        <p>Because the pattern is happening again. Only this time, it is wrapped in the language of innovation.</p>
+
+        <h2>The material cost of the immaterial</h2>
+
+        <p>Artificial intelligence feels weightless. It lives in the cloud. You type a question and an answer appears, as if conjured from thin air. But AI is not immaterial. It is one of the most resource-intensive technologies ever built, and its physical supply chain runs directly through the Global South.</p>
+
+        <div class="stat-block">
+            <p><strong>Cobalt:</strong> Over 70% of the world's cobalt comes from the DRC. It is essential for the lithium-ion batteries that power AI data centres. Artisanal mining, which accounts for up to 30% of the DRC's cobalt output, has been linked to child labour, toxic exposure, and land displacement.</p>
+            <p><strong>Lithium:</strong> The "white gold" of the energy transition. Extracted in vast quantities from Chile, Argentina, Bolivia, and increasingly from new deposits in Ghana and Zimbabwe. Lithium extraction consumes enormous volumes of water in some of the driest regions on earth.</p>
+            <p><strong>Rare earth elements:</strong> Neodymium, dysprosium, and others essential for electronics and green technology. China controls roughly 60% of mining and 90% of processing. New mines are opening across Africa, from Madagascar to Malawi.</p>
+            <p><strong>Water:</strong> Training a single large AI model can consume hundreds of thousands of litres of water for cooling. A single conversational query with a large language model uses an estimated 500ml of water. Data centres are being built in regions already facing water stress.</p>
+            <p><strong>Energy:</strong> AI data centres are projected to consume 3&ndash;4% of global electricity by 2030, up from roughly 1&ndash;2% today. Training GPT-4 alone was estimated to require around 50 gigawatt-hours of energy &mdash; roughly the annual consumption of a small town.</p>
+        </div>
+
+        <p>These are not abstract numbers. They represent places. Communities. Ecosystems. The cobalt in your phone was dug from a specific hillside by a specific person. The water cooling the server answering your AI query could have irrigated someone's farm.</p>
+
+        <h2>The new scramble</h2>
+
+        <p>In 1884, European powers sat around a table in Berlin and carved up Africa. No African leaders were present. The continent's resources &mdash; its rubber, ivory, gold, diamonds, people &mdash; were divided among foreign interests. The consequences of that conference are still playing out today, in borders that make no geographic or cultural sense, in economies structured around extraction rather than development, in the wealth that flowed out and never came back.</p>
+
+        <p>I would argue that we are living through a second scramble. The actors have changed &mdash; the United States, China, the European Union, and a new class of technology corporations &mdash; but the dynamics are disturbingly familiar. The AI boom has made critical minerals the most strategically valuable resources on earth. And the rush to secure them is intensifying.</p>
+
+        <blockquote>
+            <p>The communities sitting on top of these minerals did not create the demand for AI. They will not benefit proportionately from its profits. But they will bear the environmental cost of its extraction, the health consequences of its processing, and the social disruption of its mining.</p>
+        </blockquote>
+
+        <p>The US Inflation Reduction Act includes provisions designed to secure American access to critical minerals. The EU's Critical Raw Materials Act sets extraction targets and fast-tracks mining permits. China's Belt and Road Initiative has been investing in African mining infrastructure for over a decade. These are industrial policies dressed as climate solutions &mdash; and they are reshaping the Global South without the Global South's meaningful participation in the decision-making.</p>
+
+        <p>Ghana, my home country, knows this story well. Gold has been mined there for centuries &mdash; the country was once called the Gold Coast, a name given by European traders who saw the land primarily as a source of wealth to be shipped elsewhere. Today, Ghana is one of Africa's top gold producers, and yet illegal mining, or <em>galamsey</em>, continues to devastate rivers and forests because the formal economy has failed to share the benefits fairly. Oil was discovered off Ghana's coast in 2007, and the debates about revenue management, local content, and environmental protection are still unresolved. Now lithium and rare earth deposits are being explored. The question is whether this time will be different &mdash; or whether we will repeat the same extractive pattern under a new name.</p>
+
+        <h2>Who makes the rules?</h2>
+
+        <p>If you follow the global conversation about AI governance, you will notice something striking: it is overwhelmingly shaped by the US, the EU, and China. The EU AI Act, the US Executive Order on AI, China's regulatory framework &mdash; these are the documents being treated as the global standard. Africa, Latin America, South and South-East Asia &mdash; the regions most affected by AI's material supply chain &mdash; are largely absent from the table where the rules are being written.</p>
+
+        <p>This matters. AI governance is not just about bias in algorithms or deepfakes in elections, important as those issues are. It is about the entire lifecycle of the technology &mdash; from the mine to the data centre to the product to the e-waste dump. And if the governance frameworks do not account for the extraction at the beginning of that chain, they are incomplete. They are protecting consumers in the Global North while ignoring producers in the Global South.</p>
+
+        <p>The African Union has begun work on an AI strategy. Individual countries like Rwanda and Kenya are developing national frameworks. But these efforts are under-resourced and outpaced by the speed of investment. Multinational mining contracts are being signed faster than governance frameworks can be built to regulate them.</p>
+
+        <h2>What a just framework looks like</h2>
+
+        <p>I am not arguing against AI. I am not arguing against mining. I am arguing against the assumption that progress for some must come at the cost of others &mdash; and that this cost is acceptable because the people bearing it are far away, poor, or Black.</p>
+
+        <p>A just framework for AI and resource governance would include several things:</p>
+
+        <p><strong>Transparency.</strong> Full supply chain disclosure from technology companies. If your AI model runs on cobalt, say where it comes from and under what conditions it was mined. The same standards we are beginning to apply to fashion and food should apply to technology.</p>
+
+        <p><strong>Meaningful participation.</strong> Affected communities must be at the governance table &mdash; not as tokens, but as decision-makers. Free, prior, and informed consent is not a bureaucratic formality; it is a human right.</p>
+
+        <p><strong>Benefit-sharing.</strong> Resource-rich countries should not merely export raw minerals. Local processing, manufacturing, and value addition must be part of any extraction agreement. The wealth should stay where the resource is.</p>
+
+        <p><strong>Environmental accountability.</strong> The environmental costs of AI &mdash; water consumption, energy use, land degradation, e-waste &mdash; should be measured, reported, and borne by the companies that profit from the technology, not externalised onto communities that did not consent to the risk.</p>
+
+        <p><strong>Legal mechanisms.</strong> International law, climate litigation, and corporate accountability frameworks need to evolve to address the new dynamics of AI-driven extraction. The law must catch up with the technology.</p>
+
+        <h2>Why this is personal</h2>
+
+        <p>I am a barrister. I trained at Francis Taylor Building, one of the UK's leading environmental and planning law chambers. I work at the Government Legal Department. I founded an NGO in Ghana when I was a teenager. I have sat in rooms where policy is made and in communities where its consequences are felt.</p>
+
+        <p>I write about this because I believe the law can be a tool for change &mdash; but only if it responds to the world as it actually is, not as it was ten years ago. The world today is one in which a question you ask an AI chatbot has a material footprint that stretches from a data centre in Virginia to a mine in Kolwezi. Governance must stretch just as far.</p>
+
+        <p>The AI revolution is not invisible. It is just that we have been trained not to look at the parts that are uncomfortable. This is an invitation to look.</p>
+
+        <blockquote>
+            <p>Progress that depends on the exploitation of some for the benefit of others is not progress. It is extraction wearing a better outfit.</p>
+        </blockquote>
+    </article>
+
+    <!-- Author -->
+    <div class="article-author">
+        <div class="article-author-info">
+            <strong>Karen Safo-Barnieh</strong>
+            <span>Barrister at Law. Consultant. Human rights activist.</span>
+        </div>
+    </div>
+
+    <!-- Back -->
+    <div class="article-back">
+        <a href="../index.html#insights">&larr; Back to Journal</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <a href="../index.html#home" class="footer-logo">Karen Safo-Barnieh</a>
+                    <p>Barrister at Law. Consultant. Human rights activist. Advocate for change.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <a href="../index.html#about">About</a>
+                        <a href="../index.html#services">Practice</a>
+                        <a href="../index.html#advisory">Advisory</a>
+                    </div>
+                    <div class="footer-col">
+                        <a href="../index.html#insights">Journal</a>
+                        <a href="../index.html#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Karen Safo-Barnieh. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            navToggle.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                navToggle.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

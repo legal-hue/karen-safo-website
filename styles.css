@@ -612,6 +612,75 @@ img { max-width: 100%; display: block; }
     letter-spacing: 0.2em;
 }
 
+/* --- Advisory Section --- */
+.advisory-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: -2rem auto 4rem;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-body);
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+}
+
+.advisory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+}
+
+.advisory-card {
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+    transition: all 0.4s var(--ease);
+    background: var(--cream);
+}
+
+.advisory-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+.advisory-number {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.advisory-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.advisory-line {
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 1rem;
+}
+
+.advisory-text {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--text-body);
+    line-height: 1.8;
+}
+
+.advisory-cta {
+    text-align: center;
+    margin-top: 3.5rem;
+}
+
 /* --- Pull Quote --- */
 .section-quote {
     padding: 6rem 0;
@@ -1063,6 +1132,7 @@ img { max-width: 100%; display: block; }
     .service-card:last-child { border-bottom: none; }
 
     .testimonials-grid, .insights-grid { grid-template-columns: repeat(2, 1fr); }
+    .advisory-grid { grid-template-columns: repeat(2, 1fr); }
 
     .faq-layout { grid-template-columns: 1fr; gap: 2rem; }
     .faq-header .section-label, .faq-header .section-title { text-align: center; }
@@ -1100,7 +1170,7 @@ img { max-width: 100%; display: block; }
     }
 
     .section { padding: 5rem 0; }
-    .testimonials-grid, .insights-grid { grid-template-columns: 1fr; }
+    .testimonials-grid, .insights-grid, .advisory-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
 
     .hero-image-frame { width: 280px; height: 360px; }
