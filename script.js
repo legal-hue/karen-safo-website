@@ -110,7 +110,7 @@ contactForm.addEventListener('submit', (e) => {
     // Simulate form submission
     setTimeout(() => {
         btn.textContent = 'Message Sent!';
-        btn.style.background = '#2C5282';
+        btn.style.background = '#A68845';
 
         setTimeout(() => {
             btn.textContent = originalText;
