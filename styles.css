@@ -770,6 +770,7 @@ img { max-width: 100%; display: block; }
 .section-quote {
     padding: 6rem 0;
     background-color: var(--noir);
+    background-image: url('london-skyline.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -816,48 +817,6 @@ img { max-width: 100%; display: block; }
     text-transform: uppercase;
     color: var(--gold);
     font-style: normal;
-}
-
-/* --- Testimonials Header --- */
-.testimonials-header {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    max-width: 700px;
-    margin: 0 auto 5rem;
-}
-
-.testimonials-header-image {
-    width: 180px;
-    flex-shrink: 0;
-    overflow: hidden;
-}
-
-.testimonials-header-image img {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    object-position: center top;
-    filter: grayscale(20%) contrast(1.05);
-    transition: filter 0.6s var(--ease);
-}
-
-.testimonials-header-image img:hover {
-    filter: grayscale(0%) contrast(1);
-}
-
-.testimonials-header-text .section-label,
-.testimonials-header-text .section-title {
-    text-align: left;
-}
-
-.testimonials-caption {
-    margin-top: 1rem;
-    font-size: 0.7rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
 }
 
 /* --- Testimonials --- */
@@ -1287,9 +1246,7 @@ img { max-width: 100%; display: block; }
     .advisory-hero-content .section-title { text-align: center; }
     .advisory-intro-side { text-align: center; }
 
-    .testimonials-header { flex-direction: column; text-align: center; }
-    .testimonials-header-text .section-label,
-    .testimonials-header-text .section-title { text-align: center; }
+
 
     .testimonials-grid, .insights-grid { grid-template-columns: repeat(2, 1fr); }
     .advisory-grid { grid-template-columns: repeat(2, 1fr); }
