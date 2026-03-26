@@ -2,24 +2,23 @@
    Karen Safo-Barnieh — Portfolio Script
    ============================================ */
 
-// --- Reveal on Scroll ---
+// --- Reveal on Scroll (skip hero — handled by cinematic intro) ---
 const revealElements = document.querySelectorAll('.reveal');
 
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            // Stagger animations within the same section
             const parent = entry.target.closest('.section, .hero, .section-quote');
+
+            // Skip hero elements — they're handled by the cinematic intro
+            if (parent && parent.classList.contains('hero')) return;
+
             const siblings = parent ? parent.querySelectorAll('.reveal') : [];
             const siblingIndex = Array.from(siblings).indexOf(entry.target);
 
-            // Longer stagger for hero (cinematic), normal for other sections
-            const isHero = parent && parent.classList.contains('hero');
-            const staggerDelay = isHero ? 180 : 100;
-
             setTimeout(() => {
                 entry.target.classList.add('visible');
-            }, siblingIndex * staggerDelay);
+            }, siblingIndex * 100);
 
             revealObserver.unobserve(entry.target);
         }
@@ -30,6 +29,20 @@ const revealObserver = new IntersectionObserver((entries) => {
 });
 
 revealElements.forEach(el => revealObserver.observe(el));
+
+// --- Cinematic Hero Intro ---
+setTimeout(() => {
+    const hero = document.querySelector('.hero');
+    hero.classList.add('revealed');
+
+    // Stagger hero text reveals after photo fades
+    const heroReveals = hero.querySelectorAll('.reveal');
+    heroReveals.forEach((el, i) => {
+        setTimeout(() => {
+            el.classList.add('visible');
+        }, 800 + (i * 200));
+    });
+}, 4000);
 
 // --- Navigation Scroll Effect ---
 const nav = document.getElementById('nav');
@@ -238,14 +251,10 @@ window.addEventListener('scroll', () => {
         requestAnimationFrame(() => {
             const scrollY = window.scrollY;
 
-            // Hero feature image parallax
-            const heroFeature = document.querySelector('.hero-feature img');
-            if (heroFeature) {
-                const rect = heroFeature.parentElement.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    const progress = rect.top / window.innerHeight;
-                    heroFeature.style.transform = `scale(1.05) translateY(${progress * -30}px)`;
-                }
+            // Hero intro image subtle zoom as you scroll
+            const heroIntro = document.querySelector('.hero-intro-image img');
+            if (heroIntro && scrollY < window.innerHeight) {
+                heroIntro.style.transform = `scale(${1 + scrollY * 0.0003})`;
             }
 
             // Pull quote background parallax
