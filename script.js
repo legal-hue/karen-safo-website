@@ -9,13 +9,17 @@ const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
             // Stagger animations within the same section
-            const parent = entry.target.closest('.section, .hero');
+            const parent = entry.target.closest('.section, .hero, .section-quote');
             const siblings = parent ? parent.querySelectorAll('.reveal') : [];
             const siblingIndex = Array.from(siblings).indexOf(entry.target);
 
+            // Longer stagger for hero (cinematic), normal for other sections
+            const isHero = parent && parent.classList.contains('hero');
+            const staggerDelay = isHero ? 180 : 100;
+
             setTimeout(() => {
                 entry.target.classList.add('visible');
-            }, siblingIndex * 100);
+            }, siblingIndex * staggerDelay);
 
             revealObserver.unobserve(entry.target);
         }
@@ -30,11 +34,18 @@ revealElements.forEach(el => revealObserver.observe(el));
 // --- Navigation Scroll Effect ---
 const nav = document.getElementById('nav');
 
+let navTicking = false;
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
+    if (!navTicking) {
+        requestAnimationFrame(() => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            navTicking = false;
+        });
+        navTicking = true;
     }
 });
 
@@ -135,4 +146,116 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+});
+
+/* ============================================
+   WOW — Cinematic Interactions
+   ============================================ */
+
+// --- Number Counting Animation ---
+function animateCount(el, start, end, duration) {
+    const startTime = performance.now();
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(start + (end - start) * eased);
+        el.textContent = current;
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+
+const counters = document.querySelectorAll('.accolade-number');
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const text = el.textContent.trim();
+            const num = parseInt(text);
+            if (!isNaN(num)) {
+                el.textContent = '0';
+                // Delay to sync with reveal animation
+                setTimeout(() => {
+                    animateCount(el, 0, num, 1800);
+                }, 400);
+            }
+            counterObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+
+counters.forEach(c => counterObserver.observe(c));
+
+// --- Custom Cursor (desktop only) ---
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const cursor = document.createElement('div');
+    cursor.classList.add('custom-cursor');
+    document.body.appendChild(cursor);
+
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!cursor.classList.contains('visible')) {
+            cursor.classList.add('visible');
+        }
+    });
+
+    document.addEventListener('mouseleave', () => {
+        cursor.classList.remove('visible');
+    });
+
+    document.addEventListener('mouseenter', () => {
+        cursor.classList.add('visible');
+    });
+
+    function updateCursor() {
+        // Smooth follow with lerp
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+
+    // Grow cursor on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .faq-question, input, textarea, select');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+    });
+}
+
+// --- Parallax Effects ---
+let parallaxTicking = false;
+window.addEventListener('scroll', () => {
+    if (!parallaxTicking) {
+        requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+
+            // Hero image subtle parallax
+            const heroFrame = document.querySelector('.hero-image-frame');
+            if (heroFrame && scrollY < window.innerHeight) {
+                heroFrame.style.transform = `translateY(${scrollY * 0.08}px)`;
+            }
+
+            // Pull quote background parallax
+            const quoteSection = document.querySelector('.section-quote');
+            if (quoteSection) {
+                const rect = quoteSection.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const progress = rect.top / window.innerHeight;
+                    quoteSection.style.backgroundPosition = `center ${50 + (progress * 20)}%`;
+                }
+            }
+
+            parallaxTicking = false;
+        });
+        parallaxTicking = true;
+    }
 });

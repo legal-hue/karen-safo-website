@@ -1207,6 +1207,257 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================
+   WOW — Cinematic Interactions
+   ============================================ */
+
+/* --- Custom Cursor (desktop) --- */
+.custom-cursor {
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s var(--ease), opacity 0.3s;
+    opacity: 0;
+}
+
+.custom-cursor.visible {
+    opacity: 1;
+}
+
+.custom-cursor.cursor-hover {
+    width: 44px;
+    height: 44px;
+    background: rgba(196, 162, 101, 0.08);
+    border-color: var(--gold-light);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
+    a, button, input, textarea, select { cursor: none; }
+}
+
+@media (hover: none), (pointer: coarse) {
+    .custom-cursor { display: none !important; }
+}
+
+/* --- Gold Scrollbar --- */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--noir);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-light);
+}
+
+/* --- Hero Cinematic Entrance --- */
+.hero .hero-name.reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.hero .hero-name .hero-name-line {
+    opacity: 0;
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+
+.hero .hero-name .hero-name-line:first-child {
+    transform: translateX(-60px);
+}
+
+.hero .hero-name .hero-name-line.italic {
+    transform: translateX(60px);
+    transition-delay: 0.15s;
+}
+
+.hero .hero-name.visible .hero-name-line {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hero divider grows from left */
+.hero .hero-divider.reveal {
+    opacity: 1;
+    transform: none;
+    width: 0;
+    transition: width 0.8s var(--ease);
+}
+
+.hero .hero-divider.reveal.visible {
+    width: 60px;
+}
+
+/* Hero image curtain reveal */
+.hero .hero-visual.reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.hero-image-frame {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: clip-path, transform;
+}
+
+.hero .hero-visual.visible .hero-image-frame {
+    clip-path: inset(0 0 0 0);
+}
+
+/* Hero border draws in */
+.hero-image-border {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    transition: clip-path 0.8s var(--ease) 0.5s;
+}
+
+.hero .hero-visual.visible .hero-image-border {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* --- Gold Image Reveal Overlays --- */
+.about-image-wrapper::after,
+.advisory-hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform-origin: right;
+    transform: scaleX(1);
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 2;
+}
+
+.about-image.visible .about-image-wrapper::after {
+    transform: scaleX(0);
+}
+
+.advisory-hero.visible .advisory-hero-image::after {
+    transform: scaleX(0);
+    transition-delay: 0.2s;
+}
+
+/* Ensure image wrappers are positioned for overlay */
+.about-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.advisory-hero-image {
+    position: relative;
+}
+
+/* --- Nav Link Gold Underline --- */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a:not(.nav-cta)::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s var(--ease);
+}
+
+.nav-links a:not(.nav-cta):hover::after {
+    width: 100%;
+}
+
+/* --- Enhanced Service Card Hovers --- */
+.service-card {
+    transition: background 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.service-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-6px);
+}
+
+.service-number {
+    transition: transform 0.5s var(--ease), color 0.3s;
+}
+
+.service-card:hover .service-number {
+    transform: translateX(8px);
+}
+
+.service-line {
+    transition: width 0.5s var(--ease);
+}
+
+.service-card:hover .service-line {
+    width: 50px;
+}
+
+/* --- Enhanced Advisory Card Hovers --- */
+.advisory-card {
+    transition: all 0.5s var(--ease);
+}
+
+.advisory-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.advisory-number {
+    transition: transform 0.5s var(--ease);
+}
+
+.advisory-card:hover .advisory-number {
+    transform: translateX(6px);
+}
+
+/* --- Testimonial Card Polish --- */
+.testimonial-card {
+    transition: all 0.5s var(--ease);
+}
+
+.testimonial-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Pull Quote Enhanced --- */
+.pull-quote p {
+    transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+}
+
+.pull-quote.reveal {
+    transform: none;
+}
+
+.pull-quote.reveal p {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.pull-quote.visible p {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* --- Number Counter Animation --- */
+.accolade-number {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ============================================
    Responsive
    ============================================ */
 @media (max-width: 1024px) {
