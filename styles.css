@@ -1046,6 +1046,101 @@ img { max-width: 100%; display: block; }
     line-height: 1.9;
 }
 
+/* --- Practice Page Hero (instant, no cinematic delay) --- */
+.hero-instant .hero-intro-image {
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.hero-instant .hero-content {
+    opacity: 1;
+}
+
+/* --- Dark FAQ variant --- */
+.faq-item-dark {
+    border-bottom-color: var(--border-light);
+}
+
+.faq-item-dark .faq-question {
+    color: var(--white);
+}
+
+.faq-item-dark .faq-question:hover {
+    color: var(--gold);
+}
+
+.faq-item-dark .faq-answer p {
+    color: var(--text-light);
+}
+
+.faq-layout .faq-header .section-title.light {
+    color: var(--white);
+}
+
+/* --- Light contact form variant --- */
+.contact-text-dark {
+    color: var(--text-body);
+}
+
+.contact-item-dark {
+    color: var(--text-body);
+}
+
+.contact-item-dark:hover {
+    color: var(--gold);
+}
+
+.contact-form-light {
+    background: var(--cream-dark);
+    border-color: var(--border);
+}
+
+.contact-form-light label {
+    color: var(--text-muted) !important;
+}
+
+.contact-form-light input,
+.contact-form-light select,
+.contact-form-light textarea {
+    color: var(--text-dark) !important;
+    border-bottom-color: var(--border) !important;
+}
+
+.contact-form-light input:focus,
+.contact-form-light select:focus,
+.contact-form-light textarea:focus {
+    border-bottom-color: var(--gold) !important;
+}
+
+.contact-form-light input::placeholder,
+.contact-form-light textarea::placeholder {
+    color: var(--text-muted) !important;
+}
+
+.contact-form-light select option {
+    background: var(--cream);
+    color: var(--text-dark);
+}
+
+.form-note-dark {
+    color: var(--text-muted) !important;
+}
+
+/* --- Practice CTA --- */
+.practice-cta-text {
+    text-align: center;
+    max-width: 600px;
+    margin: -2rem auto 3rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--text-light);
+    line-height: 1.9;
+}
+
+.practice-cta-btn {
+    text-align: center;
+}
+
 /* --- Contact --- */
 .contact-layout {
     display: grid;

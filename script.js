@@ -30,19 +30,29 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => revealObserver.observe(el));
 
-// --- Cinematic Hero Intro ---
-setTimeout(() => {
-    const hero = document.querySelector('.hero');
-    hero.classList.add('revealed');
+// --- Cinematic Hero Intro (landing page only) ---
+const hero = document.querySelector('.hero');
+if (hero && !hero.classList.contains('hero-instant')) {
+    setTimeout(() => {
+        hero.classList.add('revealed');
 
-    // Stagger hero text reveals after photo fades
+        // Stagger hero text reveals after photo fades
+        const heroReveals = hero.querySelectorAll('.reveal');
+        heroReveals.forEach((el, i) => {
+            setTimeout(() => {
+                el.classList.add('visible');
+            }, 800 + (i * 200));
+        });
+    }, 4000);
+} else if (hero && hero.classList.contains('hero-instant')) {
+    // Practice page — reveal hero elements immediately with stagger
     const heroReveals = hero.querySelectorAll('.reveal');
     heroReveals.forEach((el, i) => {
         setTimeout(() => {
             el.classList.add('visible');
-        }, 800 + (i * 200));
+        }, 300 + (i * 150));
     });
-}, 4000);
+}
 
 // --- Navigation Scroll Effect ---
 const nav = document.getElementById('nav');
@@ -122,7 +132,7 @@ faqItems.forEach(item => {
 // --- Contact Form ---
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
+if (contactForm) contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const btn = contactForm.querySelector('button[type="submit"]');
