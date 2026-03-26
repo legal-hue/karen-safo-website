@@ -252,6 +252,11 @@ img { max-width: 100%; display: block; }
 .hero-name-line {
     display: inline-block;
     font-size: clamp(3rem, 11vw, 11rem);
+    margin-right: 0.15em;
+}
+
+.hero-name-line:last-child {
+    margin-right: 0;
 }
 
 .hero-name-line.italic {
