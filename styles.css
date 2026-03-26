@@ -15,9 +15,9 @@
     --noir-light: #1E1E1E;
     --cream: #F5F0EB;
     --cream-dark: #EBE4DB;
-    --gold: #C4A265;
-    --gold-light: #D4B97A;
-    --gold-dark: #A68845;
+    --gold: #E8C547;
+    --gold-light: #F0D56A;
+    --gold-dark: #C9A832;
     --white: #FFFFFF;
     --text-dark: #0A0A0A;
     --text-body: #4A4A4A;
@@ -1292,6 +1292,24 @@ img { max-width: 100%; display: block; }
     max-width: 300px;
 }
 
+.social-links {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+    display: flex;
+    align-items: center;
+}
+
+.social-links a:hover {
+    color: var(--gold);
+    transform: translateY(-2px);
+}
+
 .footer-links {
     display: flex;
     gap: 4rem;
@@ -1383,16 +1401,16 @@ img { max-width: 100%; display: block; }
 
 .hero .hero-name .hero-name-line {
     opacity: 0;
-    transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
 }
 
 .hero .hero-name .hero-name-line:first-child {
-    transform: translateX(-80px);
+    transform: translateY(40px);
 }
 
 .hero .hero-name .hero-name-line.italic {
-    transform: translateX(80px);
-    transition-delay: 0.15s;
+    transform: translateY(40px);
+    transition-delay: 0.8s;
 }
 
 .hero .hero-name.visible .hero-name-line {
