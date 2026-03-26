@@ -221,8 +221,8 @@ img { max-width: 100%; display: block; }
     margin: 0 auto;
     width: 100%;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
     align-items: center;
     position: relative;
     z-index: 1;
@@ -247,9 +247,9 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-name-line {
-    display: block;
-    font-size: clamp(4rem, 8vw, 7rem);
-    letter-spacing: -0.03em;
+    display: inline-block;
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    letter-spacing: -0.02em;
 }
 
 .hero-name-line.italic {
@@ -287,8 +287,8 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-image-frame {
-    width: 400px;
-    height: 520px;
+    width: 480px;
+    height: 620px;
     overflow: hidden;
     position: relative;
     z-index: 2;
@@ -311,8 +311,8 @@ img { max-width: 100%; display: block; }
     position: absolute;
     top: 20px;
     left: 20px;
-    width: 400px;
-    height: 520px;
+    width: 480px;
+    height: 620px;
     border: 1px solid var(--gold);
     z-index: 1;
 }
@@ -1472,8 +1472,8 @@ img { max-width: 100%; display: block; }
     .hero-tagline { margin-left: auto; margin-right: auto; }
     .hero-buttons { justify-content: center; }
 
-    .hero-image-frame { width: 320px; height: 420px; margin: 0 auto; }
-    .hero-image-border { width: 320px; height: 420px; left: 50%; transform: translateX(-50%); top: 20px; }
+    .hero-image-frame { width: 400px; height: 520px; margin: 0 auto; }
+    .hero-image-border { width: 400px; height: 520px; left: 50%; transform: translateX(-50%); top: 20px; }
 
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .about-image-wrapper { max-width: 450px; margin: 0 auto; }
@@ -1541,8 +1541,9 @@ img { max-width: 100%; display: block; }
     .testimonials-grid, .insights-grid, .advisory-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
 
-    .hero-image-frame { width: 280px; height: 360px; }
-    .hero-image-border { width: 280px; height: 360px; }
+    .hero-name-line { font-size: clamp(1.8rem, 6.5vw, 2.5rem); }
+    .hero-image-frame { width: 300px; height: 400px; }
+    .hero-image-border { width: 300px; height: 400px; }
 }
 
 @media (max-width: 480px) {
