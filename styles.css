@@ -518,6 +518,51 @@ img { max-width: 100%; display: block; }
     background: var(--border);
 }
 
+/* --- Services Feature --- */
+.services-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+.services-feature-image {
+    overflow: hidden;
+    position: relative;
+}
+
+.services-feature-image img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(15%) contrast(1.05);
+    transition: filter 0.6s var(--ease);
+}
+
+.services-feature-image img:hover {
+    filter: grayscale(0%) contrast(1);
+}
+
+.services-feature-text {
+    text-align: left;
+}
+
+.services-feature-text .section-label,
+.services-feature-text .section-title {
+    text-align: left;
+}
+
+.services-feature-caption {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+}
+
 /* --- Services Section --- */
 .services-grid {
     display: grid;
@@ -612,6 +657,46 @@ img { max-width: 100%; display: block; }
     letter-spacing: 0.2em;
 }
 
+/* --- Advisory Hero --- */
+.advisory-hero {
+    display: grid;
+    grid-template-columns: 0.45fr 0.55fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.advisory-hero-image {
+    overflow: hidden;
+}
+
+.advisory-hero-image img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(20%) contrast(1.05);
+    transition: filter 0.6s var(--ease);
+}
+
+.advisory-hero-image img:hover {
+    filter: grayscale(0%) contrast(1);
+}
+
+.advisory-hero-content .section-label,
+.advisory-hero-content .section-title {
+    text-align: left;
+}
+
+.advisory-intro-side {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-body);
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+}
+
 /* --- Advisory Section --- */
 .advisory-intro {
     text-align: center;
@@ -684,9 +769,25 @@ img { max-width: 100%; display: block; }
 /* --- Pull Quote --- */
 .section-quote {
     padding: 6rem 0;
-    background: var(--cream);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    background-color: var(--noir);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-top: none;
+    border-bottom: none;
+}
+
+.section-quote::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.75);
+}
+
+.section-quote .container {
+    position: relative;
+    z-index: 1;
 }
 
 .pull-quote {
@@ -700,7 +801,7 @@ img { max-width: 100%; display: block; }
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: 300;
     font-style: italic;
-    color: var(--text-dark);
+    color: var(--white);
     line-height: 1.6;
     letter-spacing: -0.01em;
 }
@@ -715,6 +816,48 @@ img { max-width: 100%; display: block; }
     text-transform: uppercase;
     color: var(--gold);
     font-style: normal;
+}
+
+/* --- Testimonials Header --- */
+.testimonials-header {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    max-width: 700px;
+    margin: 0 auto 5rem;
+}
+
+.testimonials-header-image {
+    width: 180px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.testimonials-header-image img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(20%) contrast(1.05);
+    transition: filter 0.6s var(--ease);
+}
+
+.testimonials-header-image img:hover {
+    filter: grayscale(0%) contrast(1);
+}
+
+.testimonials-header-text .section-label,
+.testimonials-header-text .section-title {
+    text-align: left;
+}
+
+.testimonials-caption {
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
 }
 
 /* --- Testimonials --- */
@@ -1129,9 +1272,24 @@ img { max-width: 100%; display: block; }
     .about-text { text-align: center; }
     .about-accolades { justify-content: center; }
 
+    .services-feature { grid-template-columns: 1fr; gap: 2rem; }
+    .services-feature-text { text-align: center; }
+    .services-feature-text .section-label,
+    .services-feature-text .section-title { text-align: center; }
+
     .services-grid { grid-template-columns: 1fr; }
     .service-card { border-right: none; border-bottom: 1px solid var(--border-light); }
     .service-card:last-child { border-bottom: none; }
+
+    .advisory-hero { grid-template-columns: 1fr; gap: 2rem; }
+    .advisory-hero-image { max-width: 400px; margin: 0 auto; }
+    .advisory-hero-content .section-label,
+    .advisory-hero-content .section-title { text-align: center; }
+    .advisory-intro-side { text-align: center; }
+
+    .testimonials-header { flex-direction: column; text-align: center; }
+    .testimonials-header-text .section-label,
+    .testimonials-header-text .section-title { text-align: center; }
 
     .testimonials-grid, .insights-grid { grid-template-columns: repeat(2, 1fr); }
     .advisory-grid { grid-template-columns: repeat(2, 1fr); }
