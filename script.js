@@ -238,10 +238,14 @@ window.addEventListener('scroll', () => {
         requestAnimationFrame(() => {
             const scrollY = window.scrollY;
 
-            // Hero image subtle parallax
-            const heroFrame = document.querySelector('.hero-image-frame');
-            if (heroFrame && scrollY < window.innerHeight) {
-                heroFrame.style.transform = `translateY(${scrollY * 0.08}px)`;
+            // Hero feature image parallax
+            const heroFeature = document.querySelector('.hero-feature img');
+            if (heroFeature) {
+                const rect = heroFeature.parentElement.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const progress = rect.top / window.innerHeight;
+                    heroFeature.style.transform = `scale(1.05) translateY(${progress * -30}px)`;
+                }
             }
 
             // Pull quote background parallax
