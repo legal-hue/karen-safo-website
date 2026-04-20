@@ -74,14 +74,29 @@ if (contactForm) {
         const originalText = btn.textContent;
         btn.textContent = 'Sending...';
         btn.disabled = true;
-        setTimeout(() => {
-            btn.textContent = 'Message Sent';
+        const formData = new FormData(contactForm);
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                btn.textContent = 'Message Sent';
+                contactForm.reset();
+            } else {
+                btn.textContent = 'Error. Try again.';
+            }
             setTimeout(() => {
                 btn.textContent = originalText;
                 btn.disabled = false;
-                contactForm.reset();
-            }, 2500);
-        }, 1000);
+            }, 3000);
+        }).catch(() => {
+            btn.textContent = 'Error. Try again.';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }, 3000);
+        });
     });
 }
 

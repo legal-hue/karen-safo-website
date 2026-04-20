@@ -205,36 +205,44 @@ img { max-width: 100%; display: block; }
    Press / As Seen In
    ============================================ */
 .press {
-    padding: 3rem 0;
-    background: var(--ivory);
-    border-top: 1px solid rgba(0,0,0,0.06);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 4rem 0;
+    background: var(--green);
+    overflow: hidden;
 }
 .press-label {
-    font-size: 0.58rem; font-weight: 500; letter-spacing: 0.24em;
-    text-transform: uppercase; color: var(--muted);
-    text-align: center; margin-bottom: 1.75rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.65);
+    text-align: center; margin-bottom: 2.25rem;
 }
-.press-logos {
-    display: flex; align-items: center; justify-content: center;
-    gap: 2rem; flex-wrap: wrap;
+.press-marquee {
+    overflow: hidden;
+    position: relative;
+}
+.press-marquee::before,
+.press-marquee::after {
+    content: '';
+    position: absolute; top: 0; bottom: 0; z-index: 2;
+    width: 120px; pointer-events: none;
+}
+.press-marquee::before { left: 0; background: linear-gradient(to right, var(--green), transparent); }
+.press-marquee::after  { right: 0; background: linear-gradient(to left,  var(--green), transparent); }
+.press-track {
+    display: flex; align-items: center;
+    width: max-content; gap: 5rem;
+    animation: marquee 32s linear infinite;
+    padding: 0.5rem 2rem;
+}
+.press-track:hover { animation-play-state: paused; }
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
 }
 .press-logo-img {
-    height: 28px; width: auto; display: block;
-    filter: grayscale(100%) opacity(0.28);
+    height: 36px; width: auto; display: block; flex-shrink: 0;
+    filter: brightness(0) invert(1) opacity(0.75);
     transition: filter 0.35s;
 }
-.press-logo-img:hover { filter: grayscale(0%) opacity(0.65); }
-.press-divider {
-    width: 1px; height: 18px;
-    background: rgba(0,0,0,0.1); flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-    .press-divider { display: none; }
-    .press-logos { gap: 1.5rem 2rem; }
-    .press-logo-img { height: 22px; }
-}
+.press-logo-img:hover { filter: brightness(0) invert(1) opacity(1); }
 
 /* ============================================
    About

@@ -1,0 +1,283 @@
+ 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Access denied | BrandEPS</title>
+<meta name="description" content="Access denied. Please try different browsing">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="icon" type="image/ico" href="https://brandeps.com/favicon.ico"/>
+<link href="/assets/css/universal.css?v=477" rel="stylesheet" type="text/css">
+<script nonce="13e8076237be2dd7fe55c771a7bba033">
+  window.error_type = "403 Access Forbidden"; 
+  window.broken_url = window.location.href;
+</script>
+<script nonce="13e8076237be2dd7fe55c771a7bba033">
+(function() {
+  var host = window.location.hostname.replace(/\.$/, '');
+  var allowed = ['brandeps.com', 'www.brandeps.com'];
+  if (allowed.indexOf(host) === -1) return;
+
+  var fired = false;
+
+  function triggerGA() {
+    if (fired) return;
+    fired = true;
+
+    var s = document.createElement('script');
+    s.async = true;
+    s.nonce = "13e8076237be2dd7fe55c771a7bba033";
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J3G590WFED';
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+
+    gtag('js', new Date());
+    gtag('config', 'G-J3G590WFED', {
+      'page_title': window.error_type,
+      'page_location': window.broken_url
+    });
+  }
+
+  setTimeout(triggerGA, 2000);
+
+  ['mousemove','touchstart','scroll','keydown'].forEach(function(ev) {
+    window.addEventListener(ev, triggerGA, { once: true, passive: true });
+  });
+})();
+</script>
+</head>
+<body>
+<header class="bg-w">
+  <div class="container">
+    <div class="header-container flex-c">
+      <div class="logo-header">
+              <a class="logo" href="https://brandeps.com/" aria-label="Home page">
+                <img src="https://brandeps.com/assets/img/brandeps-logo.svg" width="150" height="27" alt="Logo of the BrandEPS" title="Home page">
+              </a>
+            </div>
+            <form action="https://brandeps.com/search" method="GET" class="search flex">
+              <input type="text" name="s" class="search-bar" id="searchBar" placeholder="Search logos and icons" autocomplete="off" aria-label="search" required>
+              <button type="submit" class="search-btn" id="searchBtn" aria-label="search button">
+                <span class="search-btn-bg sprite"></span>
+              </button>
+            </form>
+            <div class="nav-bar flex">
+              <div class="nav-btn flex bg-w bd" id="navLogo">
+                <span class="nav-btn-bg sprite" id="crossLogo"></span>
+                <span class="nav-btn-txt">BRAND LOGOS</span>
+              </div>
+              <div class="nav-btn flex bg-w bd" id="navIcon">
+                <span class="nav-btn-bg sprite" id="crossIcon"></span>
+                <span class="nav-btn-txt">VECTOR ICONS</span>
+              </div>
+              <div class="nav-burger" id="navBurger">
+                <span class="nav-burger-bg sprite" id="crossBurger"></span>
+              </div>
+            </div>
+    </div>
+  </div>
+</header>
+<nav class="bg-w">
+  <div class="container">
+    <div class="navigation pd-20" id="navigationLogo">
+          <span class="nav-counter"><b>12,245 Brand logos</b></span>
+          <ul>
+            <li class="nav-pl flex-c">
+              <span class="nav-pl-bg sprite"></span>
+              <a href="https://brandeps.com/logo/popular" class="nav-txt"><b>Most popular</b></a>
+            </li>
+            <li class="nav-pl flex-c">
+              <span class="nav-lt-bg sprite"></span>
+              <a href="https://brandeps.com/logo/latest" class="nav-txt"><b>Latest</b></a>
+            </li>
+            <li><a href="https://brandeps.com/logo/agriculture">Agriculture</a></li>
+            <li><a href="https://brandeps.com/logo/animals">Animals</a></li>
+            <li><a href="https://brandeps.com/logo/automotive">Automotive</a></li>
+            <li><a href="https://brandeps.com/logo/business-and-finance">Business and Finance</a></li>
+            <li><a href="https://brandeps.com/logo/chemicals">Chemicals</a></li>
+            <li><a href="https://brandeps.com/logo/communication">Communication</a></li>
+            <li><a href="https://brandeps.com/logo/computer-and-devices">Computer & Devices</a></li>
+            <li><a href="https://brandeps.com/logo/consulting-and-law">Consulting & Law</a></li>
+            <li><a href="https://brandeps.com/logo/consumer-goods">Consumer Goods</a></li>
+            <li><a href="https://brandeps.com/logo/design">Design</a></li>
+            <li><a href="https://brandeps.com/logo/education">Education</a></li>
+            <li><a href="https://brandeps.com/logo/electronics">Electronics</a></li>
+            <li><a href="https://brandeps.com/logo/energy">Energy</a></li>
+            <li><a href="https://brandeps.com/logo/engineering">Engineering</a></li>
+            <li><a href="https://brandeps.com/logo/fashion">Fashion</a></li>
+            <li><a href="https://brandeps.com/logo/flags-and-landmarks">Flags & Landmarks</a></li>
+            <li><a href="https://brandeps.com/logo/food-and-drink">Food & Drink</a></li>
+            <li><a href="https://brandeps.com/logo/game">Game</a></li>
+            <li><a href="https://brandeps.com/logo/health-and-beauty">Health & Beauty</a></li>
+            <li><a href="https://brandeps.com/logo/hotels-and-resorts">Hotels & Resorts</a></li>
+            <li><a href="https://brandeps.com/logo/internet">Internet</a></li>
+            <li><a href="https://brandeps.com/logo/manufacturing">Manufacturing</a></li>
+            <li><a href="https://brandeps.com/logo/media">Media</a></li>
+            <li><a href="https://brandeps.com/logo/metals-and-mining">Metals & Mining</a></li>
+            <li><a href="https://brandeps.com/logo/music-and-film">Music & Film</a></li>
+			<li><a href="https://brandeps.com/logo/organization">Organization</a></li>
+            <li><a href="https://brandeps.com/logo/pr-and-advertising">PR & Advertising</a></li>
+            <li><a href="https://brandeps.com/logo/programming">Programming</a></li>
+            <li><a href="https://brandeps.com/logo/real-estate">Real Estate</a></li>
+            <li><a href="https://brandeps.com/logo/retail">Retail</a></li>
+            <li><a href="https://brandeps.com/logo/security">Security</a></li>
+            <li><a href="https://brandeps.com/logo/software">Software</a></li>
+            <li><a href="https://brandeps.com/logo/sports">Sports</a></li>
+            <li><a href="https://brandeps.com/logo/transportation">Transportation</a></li>
+            <li><a href="https://brandeps.com/logo/travel-and-leisure">Travel & Leisure</a></li>
+          </ul>
+        </div>
+        <div class="navigation pd-20" id="navigationIcon">
+          <span class="nav-counter"><b>24,112 Vector icons</b></span>
+          <ul>
+            <li class="nav-pl flex-c">
+              <span class="nav-pl-bg sprite"></span>
+              <a href="https://brandeps.com/icon/popular" class="nav-txt"><b>Most popular</b></a>
+            </li>
+            <li class="nav-pl flex-c">
+              <span class="nav-lt-bg sprite"></span>
+              <a href="https://brandeps.com/icon/latest" class="nav-txt"><b>Latest</b></a>
+            </li>
+            <li><a href="https://brandeps.com/icon/animals">Animals</a></li>
+            <li><a href="https://brandeps.com/icon/arrows">Arrows</a></li>
+            <li><a href="https://brandeps.com/icon/brands">Brands</a></li>
+            <li><a href="https://brandeps.com/icon/buildings">Buildings</a></li>
+            <li><a href="https://brandeps.com/icon/business-and-finance">Business & Finance</a></li>
+            <li><a href="https://brandeps.com/icon/clothes">Clothes</a></li>
+            <li><a href="https://brandeps.com/icon/communication">Communication</a></li>
+            <li><a href="https://brandeps.com/icon/computer-and-devices">Computer & Devices</a></li>
+            <li><a href="https://brandeps.com/icon/design">Design</a></li>
+            <li><a href="https://brandeps.com/icon/electronics">Electronics</a></li>
+            <li><a href="https://brandeps.com/icon/emotions">Emotions</a></li>
+            <li><a href="https://brandeps.com/icon/flags-and-landmarks">Flags & Landmarks</a></li>
+            <li><a href="https://brandeps.com/icon/food-and-drink">Food & Drink</a></li>
+            <li><a href="https://brandeps.com/icon/home-and-office">Home & Office</a></li>
+            <li><a href="https://brandeps.com/icon/miscellaneous">Miscellaneous</a></li>
+            <li><a href="https://brandeps.com/icon/music-and-film">Music & Film</a></li>
+            <li><a href="https://brandeps.com/icon/people">People</a></li>
+            <li><a href="https://brandeps.com/icon/signs-and-symbols">Signs & Symbols</a></li>
+            <li><a href="https://brandeps.com/icon/sports">Sports</a></li>
+            <li><a href="https://brandeps.com/icon/tools-and-appliances">Tools & Appliances</a></li>
+            <li><a href="https://brandeps.com/icon/transportation">Transportation</a></li>
+            <li><a href="https://brandeps.com/icon/weather-and-Nature">Weather & Nature</a></li>
+            <li><a href="https://brandeps.com/icon/web-and-networking">Web & Networking</a></li>
+          </ul>
+         <span class="nav-author mt-20"><b>Icons by author</b></span>
+          <ul>
+            <li><a href="https://brandeps.com/author/akveo">Akveo</a></li>
+            <li><a href="https://brandeps.com/author/alexandru-stoica">Alexandru Stoica</a></li>
+            <li><a href="https://brandeps.com/author/android-icons">Android Icons</a></li>
+            <li><a href="https://brandeps.com/author/ant-design">Ant Design</a></li>
+            <li><a href="https://brandeps.com/author/baianat">Baianat</a></li>
+            <li><a href="https://brandeps.com/author/bootstrap">Bootstrap</a></li>
+            <li><a href="https://brandeps.com/author/boxicons">Boxicons</a></li>
+            <li><a href="https://brandeps.com/author/brandeps">Brandeps</a></li>
+            <li><a href="https://brandeps.com/author/bytesize">Bytesize</a></li>
+            <li><a href="https://brandeps.com/author/carbon-design-system">Carbon design system</a></li>
+            <li><a href="https://brandeps.com/author/coreui">Coreui</a></li>
+            <li><a href="https://brandeps.com/author/creative-tail">Creative tail</a></li>
+            <li><a href="https://brandeps.com/author/dripicons">Dripicons</a></li>
+            <li><a href="https://brandeps.com/author/elegant-themes">Elegant themes</a></li>
+            <li><a href="https://brandeps.com/author/entypo">Entypo</a></li>
+            <li><a href="https://brandeps.com/author/erik-flowers">Erik Flowers</a></li>
+            <li><a href="https://brandeps.com/author/evil-icons">Evil icons</a></li>
+            <li><a href="https://brandeps.com/author/feathericons">Feather icons</a></li>
+            <li><a href="https://brandeps.com/author/font-awesome">Font awesome</a></li>
+            <li><a href="https://brandeps.com/author/google-fonts">Google fonts</a></li>
+            <li><a href="https://brandeps.com/author/grommet">Grommet</a></li>
+            <li><a href="https://brandeps.com/author/heroicons">Hero icons</a></li>
+            <li><a href="https://brandeps.com/author/icomoon">Icomoon</a></li>
+            <li><a href="https://brandeps.com/author/iconic">Iconic</a></li>
+            <li><a href="https://brandeps.com/author/icons8">Icons8</a></li>
+            <li><a href="https://brandeps.com/author/invision">Invision</a></li>
+            <li><a href="https://brandeps.com/author/ionicons">Ionicons</a></li>
+            <li><a href="https://brandeps.com/author/jam-icons">Jam icons</a></li>
+            <li><a href="https://brandeps.com/author/jxnblk">Jxnblk</a></li>
+            <li><a href="https://brandeps.com/author/kameleon">Kameleon</a></li>
+            <li><a href="https://brandeps.com/author/linea">Linea</a></li>
+            <li><a href="https://brandeps.com/author/linearicons">Linear icons</a></li>
+            <li><a href="https://brandeps.com/author/mapicons">Map icons</a></li>
+            <li><a href="https://brandeps.com/author/mapbox">Mapbox</a></li>
+            <li><a href="https://brandeps.com/author/mariusz-ostrowski">Mariusz ostrowski</a></li>
+            <li><a href="https://brandeps.com/author/material-design">Material design</a></li>
+            <li><a href="https://brandeps.com/author/microsoft">Microsoft</a></li>
+            <li><a href="https://brandeps.com/author/octicons">Octicons</a></li>
+            <li><a href="https://brandeps.com/author/paomedia">Paomedia</a></li>
+            <li><a href="https://brandeps.com/author/redux">Redux</a></li>
+			<li><a href="https://brandeps.com/author/seekicon">Seekicon</a></li>
+            <li><a href="https://brandeps.com/author/steve-schoger">Steve Schoger</a></li>
+            <li><a href="https://brandeps.com/author/streamline">Streamline</a></li>
+            <li><a href="https://brandeps.com/author/swifticons">Swifticons</a></li>
+            <li><a href="https://brandeps.com/author/tabler">Tabler</a></li>
+            <li><a href="https://brandeps.com/author/themify">Themify</a></li>
+            <li><a href="https://brandeps.com/author/typicons">Typicons</a></li>
+            <li><a href="https://brandeps.com/author/uiw">UIW</a></li>
+            <li><a href="https://brandeps.com/author/whsr">WHSR</a></li>
+            <li><a href="https://brandeps.com/author/zondicons">Zondicons</a></li>
+            <li><a href="https://brandeps.com/author/zurb">Zurb</a></li>
+          </ul>
+        </div>
+
+  </div>
+</nav>
+<div class="container">
+  <div class="text-block bg-w mt-20">
+    <div class="pd-35">
+      <h1>Access forbidden</h1>
+      <div class="error-image">
+        <img src="http://www.brandeps.com/assets/img/403.svg" width="200" height="200" alt="Access forbidden">
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+ <div class="container">
+  <div class="footer-container flex">
+    <div class="page-links">
+                <a href="https://brandeps.com/about">About</a>
+                <a href="https://brandeps.com/terms">Terms of use</a>
+                <a href="https://brandeps.com/privacy">Privacy policy</a>
+                <a href="https://brandeps.com/sitemap">Site map</a>
+                <a href="https://brandeps.com/contact">Contact</a>
+                <address class="copyright">
+                  brandeps.com &copy; 2015&ndash;2026
+                </address>
+              </div>
+              <div class="social">
+                <a href="https://www.facebook.com/BrandEPS/" target="_blank" rel="noopener">Facebook</a>
+              </div>
+  </div>
+ </div>	  
+</footer>
+<script nonce="13e8076237be2dd7fe55c771a7bba033">
+    function toggleNav(buttonId, targetIds, crossId) {
+        const btn = document.getElementById(buttonId);
+        const cross = document.getElementById(crossId);
+        if (btn && cross) {
+            btn.onclick = function () {
+                cross.classList.toggle("minus");
+                const targets = Array.isArray(targetIds) ? targetIds : [targetIds];
+                targets.forEach(id => {
+                    const target = document.getElementById(id);
+                    if (target) {
+                        target.classList.toggle("blockStyle");
+                    }
+                });
+                const isExpanded = targets.some(id => {
+                    const el = document.getElementById(id);
+                    return el && el.classList.contains("blockStyle");
+                });
+                btn.setAttribute('aria-expanded', isExpanded);
+                };
+            }
+        }
+        toggleNav("navLogo", "navigationLogo", "crossLogo");
+        toggleNav("navIcon", "navigationIcon", "crossIcon");
+        toggleNav("navBurger", ["navigationLogo", "navigationIcon"], "crossBurger");
+</script>
+</body>
+</html>
