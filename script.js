@@ -7,7 +7,7 @@ const introLoader = document.getElementById('introLoader');
 if (introLoader) {
     window.setTimeout(() => {
         introLoader.classList.add('is-hidden');
-    }, 1600);
+    }, 2450);
 }
 
 // --- Reveal on Scroll ---

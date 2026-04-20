@@ -51,27 +51,29 @@ img { max-width: 100%; display: block; }
     place-items: center;
     background: var(--ivory);
     pointer-events: none;
-    animation: introExit 1.45s var(--ease) forwards;
+    animation: introExit 2.3s var(--ease) forwards;
 }
 .intro-mark {
     font-family: var(--display);
     font-size: clamp(4rem, 14vw, 9rem);
+    font-weight: 500;
     font-style: italic;
     line-height: 1;
     letter-spacing: 0.04em;
     color: var(--green);
     transform-origin: center;
-    animation: introMark 1.25s var(--ease) forwards;
+    text-shadow: 0 0 0.01em currentColor;
+    animation: introMark 2.05s var(--ease) forwards;
 }
 .intro-loader.is-hidden { display: none; }
 @keyframes introMark {
     0% { opacity: 0; transform: translateY(16px) scale(0.94); }
-    28% { opacity: 1; transform: translateY(0) scale(1); }
-    72% { opacity: 1; transform: translateY(0) scale(1); }
+    18% { opacity: 1; transform: translateY(0) scale(1); }
+    78% { opacity: 1; transform: translateY(0) scale(1); }
     100% { opacity: 0; transform: translateY(-18px) scale(1.04); }
 }
 @keyframes introExit {
-    0%, 68% { opacity: 1; visibility: visible; }
+    0%, 76% { opacity: 1; visibility: visible; }
     100% { opacity: 0; visibility: hidden; }
 }
 
