@@ -66,8 +66,24 @@ document.querySelectorAll('.faq-item').forEach(item => {
 });
 
 // --- Contact Form ---
-// FormSubmit handles the submission natively (action + method on form)
-// The _next hidden field redirects back to this page after submission
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const name = formData.get('name') || '';
+        const email = formData.get('email') || '';
+        const service = formData.get('service') || 'Not specified';
+        const message = formData.get('message') || '';
+        const subject = encodeURIComponent('New enquiry from karensafo.com');
+        const body = encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\nService needed: ${service}\n\nMessage:\n${message}`
+        );
+
+        window.location.href = `mailto:legal@karensafo.com?subject=${subject}&body=${body}`;
+    });
+}
 
 // --- Smooth scroll for anchor links ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
