@@ -343,6 +343,75 @@ img { max-width: 100%; display: block; }
     text-transform: uppercase; color: var(--muted);
 }
 
+/* ============================================
+   Milestones
+   ============================================ */
+.milestones {
+    padding: 0 0 8rem;
+    background: var(--ivory);
+}
+.milestones-header {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.8fr) 1.2fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 3rem;
+}
+.milestones-header .section-label { margin-bottom: 0.35rem; }
+.milestones-header .section-heading { margin-bottom: 0; }
+.milestone-grid {
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: 1.25rem;
+    align-items: stretch;
+}
+.milestone-card {
+    position: relative;
+    min-height: 520px;
+    overflow: hidden;
+    background: var(--green);
+}
+.milestone-card-tall { min-height: 640px; }
+.milestone-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.92);
+    transition: transform 0.8s var(--ease), filter 0.8s var(--ease);
+}
+.milestone-card:hover img {
+    transform: scale(1.035);
+    filter: saturate(1);
+}
+.milestone-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(12,24,18,0.76) 0%, rgba(12,24,18,0.08) 58%);
+}
+.milestone-card figcaption {
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 1;
+    color: var(--white);
+}
+.milestone-card figcaption span {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: var(--display);
+    font-size: clamp(1.75rem, 2.8vw, 2.75rem);
+    line-height: 1;
+}
+.milestone-card figcaption p {
+    max-width: 420px;
+    color: rgba(255,255,255,0.72);
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
 
 /* ============================================
    Advisory
@@ -640,6 +709,17 @@ img { max-width: 100%; display: block; }
 
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .about-image { max-width: 460px; }
+    .milestones-header {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .milestone-grid {
+        grid-template-columns: 1fr;
+    }
+    .milestone-card,
+    .milestone-card-tall {
+        min-height: 520px;
+    }
 
     .advisory-header { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 4rem; }
     .advisory-grid { grid-template-columns: 1fr; }
@@ -692,6 +772,14 @@ img { max-width: 100%; display: block; }
     }
 
     .about { padding: 5rem 0; }
+    .milestones { padding: 0 0 5rem; }
+    .milestone-card,
+    .milestone-card-tall { min-height: 440px; }
+    .milestone-card figcaption {
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 1.5rem;
+    }
     .advisory { padding: 5rem 0; }
     .advisory-header { margin-bottom: 3rem; }
     .journal { padding: 5rem 0; }
