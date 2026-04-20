@@ -205,14 +205,14 @@ img { max-width: 100%; display: block; }
    Press / As Seen In
    ============================================ */
 .press {
-    padding: 4rem 0;
+    padding: 4.5rem 0;
     background: var(--green);
     overflow: hidden;
 }
 .press-label {
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.2em;
+    font-size: 0.92rem; font-weight: 600; letter-spacing: 0.2em;
     text-transform: uppercase; color: rgba(255,255,255,0.65);
-    text-align: center; margin-bottom: 2.25rem;
+    text-align: center; margin-bottom: 2.5rem;
 }
 .press-marquee {
     overflow: hidden;
@@ -228,7 +228,7 @@ img { max-width: 100%; display: block; }
 .press-marquee::after  { right: 0; background: linear-gradient(to left,  var(--green), transparent); }
 .press-track {
     display: flex; align-items: center;
-    width: max-content; gap: 5rem;
+    width: max-content; gap: 5.5rem;
     animation: marquee 32s linear infinite;
     padding: 0.5rem 2rem;
 }
@@ -238,7 +238,7 @@ img { max-width: 100%; display: block; }
     to   { transform: translateX(-50%); }
 }
 .press-logo-img {
-    height: 36px; width: auto; display: block; flex-shrink: 0;
+    height: 48px; width: auto; display: block; flex-shrink: 0;
     filter: brightness(0) invert(1) opacity(0.75);
     transition: filter 0.35s;
 }
@@ -614,6 +614,10 @@ img { max-width: 100%; display: block; }
     .contact { padding: 5rem 0; }
 
     .accolades { gap: 1.5rem; }
+    .press { padding: 3.75rem 0; }
+    .press-label { font-size: 0.82rem; margin-bottom: 2rem; }
+    .press-track { gap: 3.5rem; }
+    .press-logo-img { height: 40px; }
     .testimonials-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
 
