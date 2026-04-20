@@ -361,7 +361,7 @@ img { max-width: 100%; display: block; }
 .milestones-header .section-heading { margin-bottom: 0; }
 .milestone-grid {
     display: grid;
-    grid-template-columns: 0.82fr 1.18fr;
+    grid-template-columns: 0.9fr 1.1fr;
     gap: 1.25rem;
     align-items: stretch;
 }
@@ -372,6 +372,9 @@ img { max-width: 100%; display: block; }
     background: var(--green);
 }
 .milestone-card-tall { min-height: 640px; }
+.milestone-card-tall {
+    grid-row: span 2;
+}
 .milestone-card img {
     width: 100%;
     height: 100%;
