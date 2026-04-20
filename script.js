@@ -66,39 +66,8 @@ document.querySelectorAll('.faq-item').forEach(item => {
 });
 
 // --- Contact Form ---
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = contactForm.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
-        btn.textContent = 'Sending...';
-        btn.disabled = true;
-        const formData = new FormData(contactForm);
-        fetch(contactForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if (response.ok) {
-                btn.textContent = 'Message Sent';
-                contactForm.reset();
-            } else {
-                btn.textContent = 'Error. Try again.';
-            }
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }, 3000);
-        }).catch(() => {
-            btn.textContent = 'Error. Try again.';
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }, 3000);
-        });
-    });
-}
+// FormSubmit handles the submission natively (action + method on form)
+// The _next hidden field redirects back to this page after submission
 
 // --- Smooth scroll for anchor links ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
