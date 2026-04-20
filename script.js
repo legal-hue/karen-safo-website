@@ -2,6 +2,14 @@
    Karen Safo-Barnieh — Site Script
    ============================================ */
 
+// --- Intro Loader ---
+const introLoader = document.getElementById('introLoader');
+if (introLoader) {
+    window.setTimeout(() => {
+        introLoader.classList.add('is-hidden');
+    }, 1600);
+}
+
 // --- Reveal on Scroll ---
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
