@@ -268,6 +268,26 @@ img { max-width: 100%; display: block; }
     line-height: 1.6; margin-bottom: 2.5rem; max-width: 540px;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center; }
+.hero-proof {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 2.2rem;
+    max-width: 860px;
+}
+.hero-proof span {
+    padding: 0.55rem 0.85rem;
+    border: 1px solid rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.74);
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+}
 
 .hero-image {
     position: absolute;
@@ -331,6 +351,78 @@ img { max-width: 100%; display: block; }
     transition: filter 0.35s;
 }
 .press-logo-img:hover { filter: brightness(0) invert(1) opacity(1); }
+
+/* ============================================
+   Work With Me
+   ============================================ */
+.work-with-me {
+    padding: 7rem 0;
+    background: var(--ivory-mid);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.work-header {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.75fr) 1.25fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 3rem;
+}
+.work-header .section-label,
+.work-header .section-heading {
+    margin-bottom: 0;
+}
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.08);
+}
+.work-card {
+    display: flex;
+    min-height: 360px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2.75rem 2.4rem;
+    background: var(--ivory);
+    color: var(--charcoal);
+    transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.work-card:hover {
+    background: var(--white);
+    transform: translateY(-4px);
+}
+.work-card-kicker {
+    margin-bottom: 1.3rem;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+}
+.work-card h3 {
+    font-family: var(--display);
+    font-size: clamp(1.9rem, 2.5vw, 2.45rem);
+    font-weight: 400;
+    line-height: 1.08;
+    margin-bottom: 1.25rem;
+    color: var(--green);
+}
+.work-card p {
+    color: var(--body-col);
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+}
+.work-card-link {
+    margin-top: auto;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+}
 
 /* ============================================
    About
@@ -737,6 +829,13 @@ img { max-width: 100%; display: block; }
         padding: 8rem 0 5.5rem;
     }
     .hero-image img { object-position: 58% 46%; }
+    .work-header,
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
+    .work-card {
+        min-height: 300px;
+    }
 
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .about-image { max-width: 460px; }
@@ -796,6 +895,15 @@ img { max-width: 100%; display: block; }
     .hero-tagline { font-size: 1rem; max-width: 320px; }
     .hero-actions { flex-direction: column; align-items: center; }
     .hero-actions .btn { width: min(100%, 280px); }
+    .hero-proof {
+        gap: 0.5rem;
+        margin-top: 1.6rem;
+    }
+    .hero-proof span {
+        width: min(100%, 300px);
+        padding: 0.5rem 0.7rem;
+        font-size: 0.52rem;
+    }
     .hero-image img { object-position: 58% 44%; }
     .hero-overlay {
         background:
@@ -804,6 +912,15 @@ img { max-width: 100%; display: block; }
     }
 
     .about { padding: 5rem 0; }
+    .work-with-me { padding: 5rem 0; }
+    .work-header {
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    .work-card {
+        min-height: auto;
+        padding: 2.25rem 1.75rem;
+    }
     .milestones { padding: 0 0 5rem; }
     .milestone-card,
     .milestone-card-tall { min-height: 440px; }
