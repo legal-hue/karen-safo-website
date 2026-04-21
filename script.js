@@ -51,17 +51,19 @@ window.addEventListener('scroll', () => {
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
-navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    navToggle.classList.toggle('active');
-});
-
-navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        navToggle.classList.remove('active');
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        navToggle.classList.toggle('active');
     });
-});
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            navToggle.classList.remove('active');
+        });
+    });
+}
 
 // --- FAQ Accordion ---
 document.querySelectorAll('.faq-item').forEach(item => {
@@ -72,26 +74,6 @@ document.querySelectorAll('.faq-item').forEach(item => {
         if (!isActive) item.classList.add('active');
     });
 });
-
-// --- Contact Form ---
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(contactForm);
-        const name = formData.get('name') || '';
-        const email = formData.get('email') || '';
-        const service = formData.get('service') || 'Not specified';
-        const message = formData.get('message') || '';
-        const subject = encodeURIComponent('New enquiry from karensafo.com');
-        const body = encodeURIComponent(
-            `Name: ${name}\nEmail: ${email}\nService needed: ${service}\n\nMessage:\n${message}`
-        );
-
-        window.location.href = `mailto:legal@karensafo.com?subject=${subject}&body=${body}`;
-    });
-}
 
 // --- Smooth scroll for anchor links ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
