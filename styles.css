@@ -336,7 +336,7 @@ img { max-width: 100%; display: block; }
    Work With Me
    ============================================ */
 .work-with-me {
-    padding: 7rem 0;
+    padding: 6.5rem 0 7rem;
     background: var(--ivory-mid);
     border-bottom: 1px solid rgba(0,0,0,0.06);
 }
@@ -513,7 +513,7 @@ img { max-width: 100%; display: block; }
    Honours & Media
    ============================================ */
 .honours {
-    padding: 0 0 8rem;
+    padding: 0 0 7rem;
     background: var(--ivory);
 }
 .honours-header {
@@ -537,7 +537,7 @@ img { max-width: 100%; display: block; }
 .awards-panel,
 .media-panel {
     background: var(--ivory-mid);
-    padding: 3rem;
+    padding: 2.75rem;
 }
 .awards-panel h3,
 .media-panel h3 {
@@ -557,8 +557,17 @@ img { max-width: 100%; display: block; }
     display: grid;
     grid-template-columns: 70px 1fr;
     gap: 1.25rem;
-    padding: 1.1rem 0;
+    padding: 0.95rem 0;
     border-top: 1px solid rgba(0,0,0,0.08);
+}
+.awards-list li:nth-child(-n+2) {
+    margin-bottom: 0.4rem;
+    padding: 1.2rem 1.25rem;
+    border: 1px solid rgba(184,152,106,0.28);
+    background: rgba(255,255,255,0.42);
+}
+.awards-list li:nth-child(3) {
+    border-top: none;
 }
 .awards-list li:last-child {
     border-bottom: 1px solid rgba(0,0,0,0.08);
@@ -588,10 +597,27 @@ img { max-width: 100%; display: block; }
     display: grid;
     gap: 0;
 }
+.featured-media {
+    display: grid;
+    gap: 0.8rem;
+    margin-bottom: 1.7rem;
+}
+.featured-media-card {
+    display: block;
+    padding: 1.35rem;
+    border: 1px solid rgba(184,152,106,0.28);
+    background: rgba(255,255,255,0.42);
+    transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.featured-media-card:hover {
+    background: var(--ivory);
+    border-color: var(--brass);
+    transform: translateY(-2px);
+}
 .media-list a,
 .media-item {
     display: block;
-    padding: 1.1rem 0;
+    padding: 0.85rem 0;
     border-top: 1px solid rgba(0,0,0,0.08);
     transition: color 0.25s;
 }
@@ -599,6 +625,7 @@ img { max-width: 100%; display: block; }
 .media-item:last-child {
     border-bottom: 1px solid rgba(0,0,0,0.08);
 }
+.featured-media-card span,
 .media-list span,
 .media-item span {
     display: block;
@@ -609,15 +636,30 @@ img { max-width: 100%; display: block; }
     letter-spacing: 0.16em;
     text-transform: uppercase;
 }
+.featured-media-card strong,
 .media-list strong,
 .media-item strong {
     display: block;
     color: var(--charcoal);
     font-family: var(--display);
-    font-size: clamp(1.2rem, 2vw, 1.65rem);
     font-weight: 400;
     line-height: 1.18;
 }
+.featured-media-card strong {
+    font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+}
+.featured-media-card p {
+    margin-top: 0.8rem;
+    color: var(--body-col);
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.65;
+}
+.media-list strong,
+.media-item strong {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+.featured-media-card:hover strong,
 .media-list a:hover strong {
     color: var(--green);
 }
