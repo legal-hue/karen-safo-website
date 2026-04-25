@@ -1235,8 +1235,8 @@ img { max-width: 100%; display: block; }
     }
 
     .intro-subtitle {
-        font-size: clamp(0.52rem, 1.6vw, 0.72rem);
-        letter-spacing: 0.12em;
+        font-size: clamp(0.72rem, 3.2vw, 1rem);
+        letter-spacing: 0.14em;
     }
 
     .hero { min-height: 88svh; }
