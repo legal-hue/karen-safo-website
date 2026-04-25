@@ -1119,11 +1119,46 @@ img { max-width: 100%; display: block; }
     line-height: 1.65;
 }
 
+/* ============================================
+   Engagements grid (speaking page)
+   ============================================ */
+.engagements-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.08);
+}
+.engagement-item {
+    padding: 1.5rem 1.6rem;
+    background: var(--ivory);
+    transition: background 0.25s var(--ease);
+}
+.engagement-item:hover { background: var(--white); }
+.engagement-item strong {
+    display: block;
+    color: var(--charcoal);
+    font-family: var(--display);
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+}
+.engagement-item span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
 
 /* ============================================
    Responsive
    ============================================ */
 @media (max-width: 1024px) {
+    .engagements-grid { grid-template-columns: repeat(2, 1fr); }
+
     .hero { min-height: 90svh; }
     .hero-text {
         width: min(720px, calc(100% - 4rem));
@@ -1159,7 +1194,8 @@ img { max-width: 100%; display: block; }
     .topic-grid,
     .publication-grid,
     .archive-list,
-    .format-list {
+    .format-list,
+    .engagements-grid {
         grid-template-columns: 1fr;
     }
     .topic-card,
@@ -1196,6 +1232,11 @@ img { max-width: 100%; display: block; }
     .home-page .nav:not(.scrolled) .nav-links.open .nav-cta {
         color: var(--brass) !important;
         border-color: var(--brass);
+    }
+
+    .intro-subtitle {
+        font-size: clamp(0.52rem, 1.6vw, 0.72rem);
+        letter-spacing: 0.12em;
     }
 
     .hero { min-height: 88svh; }
