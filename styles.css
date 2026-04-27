@@ -460,6 +460,44 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================
+   Background
+   ============================================ */
+.background {
+    padding: 6rem 0;
+    background: var(--green);
+}
+.background-header {
+    max-width: 540px;
+    margin-bottom: 3.5rem;
+}
+.background-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.background-item {
+    padding: 2rem 1.75rem;
+    background: var(--green);
+}
+.background-marker {
+    display: block;
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--brass);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+}
+.background-item p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.72);
+    margin: 0;
+}
+
+/* ============================================
    Milestones
    ============================================ */
 .milestones {
@@ -1221,6 +1259,7 @@ img { max-width: 100%; display: block; }
     .milestone-card-tall {
         min-height: 520px;
     }
+    .background-grid { grid-template-columns: repeat(2, 1fr); }
     .home-testimonials-grid {
         grid-template-columns: 1fr;
     }
@@ -1296,6 +1335,11 @@ img { max-width: 100%; display: block; }
             radial-gradient(circle at center, rgba(12,24,18,0.38) 0%, rgba(12,24,18,0.7) 52%, rgba(12,24,18,0.88) 100%),
             linear-gradient(0deg, rgba(12,24,18,0.7) 0%, rgba(12,24,18,0.18) 45%, rgba(12,24,18,0.42) 100%);
     }
+
+    .background { padding: 4rem 0; }
+    .background-header { margin-bottom: 2.5rem; }
+    .background-grid { grid-template-columns: 1fr; }
+    .background-item { padding: 1.5rem 1.25rem; }
 
     .about { padding: 5rem 0; }
     .work-with-me { padding: 5rem 0; }
