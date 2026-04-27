@@ -1120,6 +1120,41 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================
+   Home testimonials
+   ============================================ */
+.home-testimonials {
+    padding: 6rem 0;
+    background: var(--green);
+}
+.home-testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+.home-quote {
+    padding: 2.5rem;
+    border-left: 3px solid var(--brass);
+}
+.home-quote p {
+    font-family: var(--display);
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+}
+.home-quote cite {
+    font-family: var(--body);
+    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+}
+
+/* ============================================
    Engagements grid (speaking page)
    ============================================ */
 .engagements-grid {
@@ -1185,6 +1220,9 @@ img { max-width: 100%; display: block; }
     .milestone-card,
     .milestone-card-tall {
         min-height: 520px;
+    }
+    .home-testimonials-grid {
+        grid-template-columns: 1fr;
     }
     .honours-header,
     .honours-layout {
@@ -1269,6 +1307,8 @@ img { max-width: 100%; display: block; }
         min-height: auto;
         padding: 2.25rem 1.75rem;
     }
+    .home-testimonials { padding: 4rem 0; }
+    .home-quote { padding: 1.75rem; }
     .milestones { padding: 0 0 5rem; }
     .milestone-grid { gap: 1rem; }
     .milestone-card,
