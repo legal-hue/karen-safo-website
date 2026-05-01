@@ -51,7 +51,7 @@ img { max-width: 100%; display: block; }
     place-items: center;
     background: var(--ivory);
     pointer-events: none;
-    animation: introExit 5.3s var(--ease) forwards;
+    animation: introExit 2.3s var(--ease) forwards;
 }
 .intro-content {
     display: flex;
@@ -69,7 +69,7 @@ img { max-width: 100%; display: block; }
     color: var(--green);
     transform-origin: center;
     text-shadow: 0 0 0.01em currentColor;
-    animation: introMark 5.05s var(--ease) forwards;
+    animation: introMark 2.05s var(--ease) forwards;
 }
 .intro-subtitle {
     font-size: clamp(0.78rem, 2vw, 1.08rem);
@@ -79,7 +79,7 @@ img { max-width: 100%; display: block; }
     text-align: center;
     text-transform: uppercase;
     color: var(--brass);
-    animation: introSubtitle 5.05s var(--ease) forwards;
+    animation: introSubtitle 2.05s var(--ease) forwards;
 }
 .intro-loader.is-hidden { display: none; }
 @keyframes introMark {
