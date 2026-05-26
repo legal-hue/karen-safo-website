@@ -54,7 +54,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles.css?v=20260526">
     <style>
         .article-hero {
             min-height: 60vh;
@@ -223,10 +223,10 @@
             </button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#services">Practice</a></li>
+                <li><a href="../speaking.html">Speaking</a></li>
                 <li><a href="../index.html#advisory">Advisory</a></li>
-                <li><a href="../index.html#insights">Journal</a></li>
-                <li><a href="../index.html#contact" class="nav-cta">Contact</a></li>
+                <li><a href="../index.html#insights">Insights</a></li>
+                <li><a href="mailto:legal@karensafo.com" class="nav-cta">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -250,7 +250,7 @@
     <article class="article-body">
         <p>Somewhere in the south-east of the Democratic Republic of Congo, a child is digging. The hole is narrow, hand-carved, deep enough that daylight barely reaches the bottom. He is looking for cobalt &mdash; a blue-grey mineral that most people in London or San Francisco have never heard of, but that lives inside every device they own. Their phones, their laptops, the servers that power the AI tools they use to draft emails, generate images, and summarise documents in seconds. The distance between that child's hands and your screen is shorter than you think.</p>
 
-        <p>I grew up in Ghana. I know what extraction looks like &mdash; not from textbooks, but from the landscape itself. I watched communities live alongside gold mines that made other people rich. I saw rivers change colour. I founded Youth Development Ghana when I was seventeen because I could see, even then, that the rules of global trade were not written with us in mind. That feeling has never left me. It is the reason I became a barrister, and it is the reason I am writing this now.</p>
+        <p>Ghana is not an abstract policy subject to me. I know what extraction looks like beyond the language of trade and investment: communities living alongside gold mines that make other people rich, rivers changing colour, and young people asked to inherit the costs of decisions made elsewhere. I founded Youth Development Ghana when I was seventeen because I could see, even then, that the rules of global trade were not written with us in mind. That feeling has never left me. It is the reason I became a barrister, and it is the reason I am writing this now.</p>
 
         <p>Because the pattern is happening again. Only this time, it is wrapped in the language of innovation.</p>
 
@@ -308,7 +308,7 @@
 
         <h2>Why this is personal</h2>
 
-        <p>I am a barrister. I trained at Francis Taylor Building, one of the UK's leading environmental and planning law chambers. I work at the Government Legal Department. I founded an NGO in Ghana when I was a teenager. I have sat in rooms where policy is made and in communities where its consequences are felt.</p>
+        <p>I am a barrister, speaker and social entrepreneur. I trained at Francis Taylor Building, one of the UK's leading environmental and planning law chambers. I founded an NGO in Ghana when I was a teenager. I have sat in rooms where policy is made and in communities where its consequences are felt.</p>
 
         <p>I write about this because I believe the law can be a tool for change &mdash; but only if it responds to the world as it actually is, not as it was ten years ago. The world today is one in which a question you ask an AI chatbot has a material footprint that stretches from a data centre in Virginia to a mine in Kolwezi. Governance must stretch just as far.</p>
 
@@ -329,7 +329,7 @@
 
     <!-- Back -->
     <div class="article-back">
-        <a href="../index.html#insights">&larr; Back to Journal</a>
+        <a href="../index.html#insights">&larr; Back to Insights</a>
     </div>
 
     <!-- Footer -->
@@ -343,12 +343,12 @@
                 <div class="footer-links">
                     <div class="footer-col">
                         <a href="../index.html#about">About</a>
-                        <a href="../index.html#services">Practice</a>
+                        <a href="../speaking.html">Speaking</a>
                         <a href="../index.html#advisory">Advisory</a>
                     </div>
                     <div class="footer-col">
-                        <a href="../index.html#insights">Journal</a>
-                        <a href="../index.html#contact">Contact</a>
+                        <a href="../index.html#insights">Insights</a>
+                        <a href="mailto:legal@karensafo.com">Contact</a>
                     </div>
                 </div>
             </div>
@@ -362,14 +362,22 @@
         // Mobile nav toggle
         const navToggle = document.getElementById('navToggle');
         const navLinks = document.getElementById('navLinks');
+        navToggle.setAttribute('aria-expanded', 'false');
+        if (navLinks.id) navToggle.setAttribute('aria-controls', navLinks.id);
+
+        const setMenuState = (isOpen) => {
+            navLinks.classList.toggle('open', isOpen);
+            navToggle.classList.toggle('active', isOpen);
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+        };
+
         navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            navToggle.classList.toggle('active');
+            setMenuState(!navLinks.classList.contains('open'));
         });
+
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-                navToggle.classList.remove('active');
+                setMenuState(false);
             });
         });
     </script>
