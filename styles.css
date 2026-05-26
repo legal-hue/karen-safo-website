@@ -257,9 +257,9 @@ img { max-width: 100%; display: block; }
     align-items: center;
 }
 .hero-label {
-    font-size: clamp(0.85rem, 1.1vw, 1.05rem); font-weight: 500; letter-spacing: 0.28em;
-    text-transform: uppercase; color: rgba(255,255,255,0.85); margin-bottom: 1.75rem;
-    height: 1.6em;
+    font-size: clamp(1.05rem, 1.8vw, 1.65rem); font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 1.75rem;
+    height: 1.45em;
     overflow: hidden;
     position: relative;
 }
@@ -270,8 +270,8 @@ img { max-width: 100%; display: block; }
 }
 .hero-rotate span {
     display: block;
-    height: 1.6em;
-    line-height: 1.6em;
+    height: 1.45em;
+    line-height: 1.45em;
 }
 @keyframes heroRotate {
     0%, 22%   { transform: translateY(0); }
@@ -1333,7 +1333,16 @@ img { max-width: 100%; display: block; }
         white-space: normal;
         max-width: 100%;
     }
-    .hero-label { font-size: 0.58rem; }
+    .hero-label {
+        font-size: clamp(1.15rem, 4.4vw, 1.55rem);
+        letter-spacing: 0.12em;
+        margin-bottom: 1.35rem;
+        height: 1.35em;
+    }
+    .hero-rotate span {
+        height: 1.35em;
+        line-height: 1.35em;
+    }
     .hero-tagline { font-size: 1rem; max-width: 320px; }
     .hero-actions { flex-direction: column; align-items: center; }
     .hero-actions .btn { width: min(100%, 280px); }
@@ -1466,6 +1475,8 @@ img { max-width: 100%; display: block; }
     }
     .hero-rotate {
         flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 0.5em;
     }
     .hero-rotate span {
