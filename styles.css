@@ -257,8 +257,14 @@ img { max-width: 100%; display: block; }
     align-items: center;
 }
 .hero-label {
-    font-size: clamp(1.05rem, 1.8vw, 1.65rem); font-weight: 500; letter-spacing: 0.2em;
-    text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 1.75rem;
+    font-family: var(--display);
+    font-size: clamp(1.45rem, 2.5vw, 2.35rem);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: rgba(255,255,255,0.94);
+    margin-bottom: 1.65rem;
     height: 1.45em;
     overflow: hidden;
     position: relative;
@@ -1334,9 +1340,9 @@ img { max-width: 100%; display: block; }
         max-width: 100%;
     }
     .hero-label {
-        font-size: clamp(1.15rem, 4.4vw, 1.55rem);
-        letter-spacing: 0.12em;
-        margin-bottom: 1.35rem;
+        font-size: clamp(1.7rem, 7vw, 2.05rem);
+        letter-spacing: 0.01em;
+        margin-bottom: 1.2rem;
         height: 1.35em;
     }
     .hero-rotate span {
