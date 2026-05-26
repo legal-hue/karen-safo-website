@@ -5,26 +5,10 @@
 // --- Intro Loader ---
 const introLoader = document.getElementById('introLoader');
 if (introLoader) {
-    const introDuration = 3300;
-    let introSeen = false;
-    try {
-        introSeen = sessionStorage.getItem('ksbIntroSeen') === 'true';
-    } catch (error) {
-        introSeen = false;
-    }
-
-    if (introSeen) {
+    const introDuration = 5450;
+    window.setTimeout(() => {
         introLoader.classList.add('is-hidden');
-    } else {
-        window.setTimeout(() => {
-            introLoader.classList.add('is-hidden');
-            try {
-                sessionStorage.setItem('ksbIntroSeen', 'true');
-            } catch (error) {
-                // Storage can be unavailable in private browsing modes.
-            }
-        }, introDuration);
-    }
+    }, introDuration);
 }
 
 // --- Reveal on Scroll ---
