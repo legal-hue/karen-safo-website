@@ -119,6 +119,17 @@
         .ac-xref-note { font-size: 0.86rem; color: var(--body-col); background: var(--ivory-mid); border-left: 3px solid var(--brass); padding: 0.7rem 1rem; border-radius: 3px; margin: 1.2rem 0; line-height: 1.55; }
         .ac-cert-fields { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 1.6rem 0 0.8rem; }
         .ac-cert-input { flex: 1 1 240px; }
+        .ac-caveat.ac-danger { background: rgba(138,43,34,0.06); border-color: rgba(138,43,34,0.35); border-left-color: #8A2B22; }
+        .ac-caveat.ac-danger strong { color: #8A2B22; }
+        .ac-juris { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .ac-juris-btn { font-family: var(--body); font-size: 0.9rem; padding: 0.55rem 1.1rem; border: 1px solid rgba(45,45,45,0.2); background: var(--white); color: var(--body-col); border-radius: 999px; cursor: pointer; }
+        .ac-juris-btn:hover { border-color: var(--green); }
+        .ac-juris-btn.active { background: var(--green); color: var(--white); border-color: var(--green); }
+        .ac-find-item { background: var(--white); border: 1px solid rgba(45,45,45,0.1); border-left: 4px solid var(--brass); border-radius: 4px; padding: 0.9rem 1.2rem; margin-bottom: 0.7rem; }
+        .ac-find-name { font-family: var(--body); font-weight: 600; font-size: 0.98rem; color: var(--charcoal); }
+        .ac-find-name a { color: var(--green); text-decoration: none; }
+        .ac-find-name a:hover { text-decoration: underline; }
+        .ac-find-meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; }
     </style>
 </head>
 <body>
@@ -152,6 +163,7 @@
                 <div class="ac-tabs" role="tablist">
                     <button class="ac-tab active" id="tab-verify" type="button" role="tab">Verify citations</button>
                     <button class="ac-tab" id="tab-xref" type="button" role="tab">Cross-reference content</button>
+                    <button class="ac-tab" id="tab-find" type="button" role="tab">Find a case</button>
                 </div>
 
                 <!-- TAB 1: Verify citations exist -->
@@ -203,6 +215,31 @@
                         <span class="ac-hint">UK fully supported. US needs a free CourtListener token for content.</span>
                     </div>
                     <div id="xref-results"></div>
+                </div>
+
+                <!-- TAB 3: Find a case by scenario (real search, never AI-invented) -->
+                <div class="ac-panel" id="panel-find" role="tabpanel" hidden>
+                    <div class="ac-caveat ac-danger">
+                        <strong>Important. This is a search aid, not a substitute for research.</strong> It runs your description as a search of the official case-law databases and lists genuine results, ranked by the database's own relevance. It is <em>not wholly reliable</em>: a listed case may not in fact be on point, may be out of date, or may no longer be good law, and relevant cases may not appear. You must open and read each judgment before relying on it. Nothing here is legal advice.
+                    </div>
+
+                    <div class="ac-field">
+                        <label class="ac-label">First, choose the jurisdiction</label>
+                        <div class="ac-juris" role="radiogroup">
+                            <button type="button" class="ac-juris-btn active" data-j="UK">United Kingdom</button>
+                            <button type="button" class="ac-juris-btn" data-j="US">United States</button>
+                            <button type="button" class="ac-juris-btn" data-j="DE">Germany</button>
+                        </div>
+                    </div>
+                    <div class="ac-field">
+                        <label class="ac-label" for="find-scenario">Then, describe what you are looking for</label>
+                        <textarea id="find-scenario" class="ac-textarea" style="min-height:110px;" placeholder="e.g. indirect discrimination in employment on grounds of religion"></textarea>
+                    </div>
+                    <div class="ac-row">
+                        <button id="find-go" class="btn btn-primary">Find cases</button>
+                        <span class="ac-hint">Results are real cases from the official database, not generated.</span>
+                    </div>
+                    <div id="find-results"></div>
                 </div>
 
                 <p class="ac-meta" style="margin-top:2rem;">Sources: Find Case Law (The National Archives, UK) and CourtListener / Free Law Project (US). German lookups link to openJur and rechtsprechung-im-internet.de for manual confirmation.</p>
@@ -400,15 +437,14 @@
             }
 
             // --- Tabs ---
+            var TABS = ["verify", "xref", "find"];
             function activate(which) {
-                var v = which === "verify";
-                $("tab-verify").classList.toggle("active", v);
-                $("tab-xref").classList.toggle("active", !v);
-                $("panel-verify").hidden = !v;
-                $("panel-xref").hidden = v;
+                TABS.forEach(function (t) {
+                    $("tab-" + t).classList.toggle("active", t === which);
+                    $("panel-" + t).hidden = t !== which;
+                });
             }
-            $("tab-verify").onclick = function () { activate("verify"); };
-            $("tab-xref").onclick = function () { activate("xref"); };
+            TABS.forEach(function (t) { $("tab-" + t).onclick = function () { activate(t); }; });
 
             // --- Cross-reference ---
             $("xref-sample").onclick = function () {
@@ -470,6 +506,56 @@
                             '<div class="ac-passage-text">' + highlight(p.text, data.terms || []) + "</div></div>";
                     }).join("");
                     if (data.note) html += '<p class="ac-meta">' + esc(data.note) + "</p>";
+                }
+                box.innerHTML = html;
+            }
+
+            // --- Find a case ---
+            var findJuris = "UK";
+            document.querySelectorAll(".ac-juris-btn").forEach(function (b) {
+                b.onclick = function () {
+                    document.querySelectorAll(".ac-juris-btn").forEach(function (x) { x.classList.remove("active"); });
+                    b.classList.add("active");
+                    findJuris = b.getAttribute("data-j");
+                };
+            });
+
+            $("find-go").onclick = async function () {
+                var scenario = $("find-scenario").value.trim();
+                var btn = $("find-go"), box = $("find-results");
+                box.innerHTML = "";
+                if (!scenario) { box.innerHTML = '<p class="ac-empty">Describe what you are looking for.</p>'; return; }
+                btn.disabled = true; btn.textContent = "Searching the official database...";
+                try {
+                    var res = await fetch("/api/find", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ jurisdiction: findJuris, scenario: scenario }) });
+                    var data = await res.json();
+                    if (!res.ok) throw new Error(data.error || "Request failed");
+                    renderFind(data, box);
+                } catch (e) {
+                    box.innerHTML = '<p class="ac-empty">Something went wrong: ' + esc(e.message) + "</p>";
+                } finally {
+                    btn.disabled = false; btn.textContent = "Find cases";
+                }
+            };
+
+            function renderFind(data, box) {
+                var html = "";
+                var jurLabel = { UK: "United Kingdom", US: "United States", DE: "Germany" }[data.jurisdiction] || data.jurisdiction;
+                if (data.results && data.results.length) {
+                    html += '<p class="ac-meta" style="margin:1.4rem 0 0.8rem;">' + data.results.length + " result(s) from " + esc(data.source || jurLabel) + ", ranked by the database's own relevance. Read each before relying on it.</p>";
+                    html += data.results.map(function (r) {
+                        var name = r.url ? '<a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.name) + "</a>" : esc(r.name);
+                        var bits = [r.court, r.citation, r.date].filter(Boolean).map(esc).join(" &middot; ");
+                        return '<div class="ac-find-item"><div class="ac-find-name">' + name + "</div>" +
+                            (bits ? '<div class="ac-find-meta">' + bits + "</div>" : "") + "</div>";
+                    }).join("");
+                } else {
+                    html += '<p class="ac-empty">' + esc(data.note || "No results found. Try different words, or broaden the description.") + "</p>";
+                }
+                if (data.searchUrl) {
+                    html += '<p class="ac-meta" style="margin-top:1rem;"><a href="' + esc(data.searchUrl) + '" target="_blank" rel="noopener">Open this search on ' + esc(data.source || jurLabel) + " &rarr;</a>";
+                    if (data.altSearchUrl) html += ' &middot; <a href="' + esc(data.altSearchUrl) + '" target="_blank" rel="noopener">rechtsprechung-im-internet.de &rarr;</a>';
+                    html += "</p>";
                 }
                 box.innerHTML = html;
             }
