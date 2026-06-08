@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authority Checker | Legal Tools | Karen Safo-Barnieh</title>
-    <meta name="description" content="A free tool that checks whether the cases cited in a skeleton, opinion or advice actually exist and match their citations, against official sources. A defence against fabricated and mis-cited authorities.">
-    <meta name="keywords" content="authority checker, case citation checker, fabricated authorities, AI hallucinated cases, verify case law, Find Case Law, BAILII, CourtListener, Karen Safo-Barnieh">
+    <title>Legal Tools | Karen Safo-Barnieh</title>
+    <meta name="description" content="Free, practical legal tools from Karen Safo-Barnieh: the Authority Checker, which verifies that cited cases exist and match their citations, and Upheld, for navigating employment and housing problems.">
+    <meta name="keywords" content="legal tools, authority checker, Upheld, verify case law, fabricated authorities, employment law help, housing disrepair help, Karen Safo-Barnieh">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Authority Checker | Legal Tools">
-    <meta property="og:description" content="Check that the cases you cite actually exist and match their citations, against official sources. A defence against fabricated authorities.">
+    <meta property="og:title" content="Legal Tools | Karen Safo-Barnieh">
+    <meta property="og:description" content="Free, practical legal tools: the Authority Checker and Upheld.">
     <meta property="og:image" content="https://karensafo.com/og-image.png">
     <meta property="og:url" content="https://karensafo.com/tools.html">
     <meta property="og:site_name" content="Karen Safo-Barnieh">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Authority Checker | Legal Tools">
-    <meta name="twitter:description" content="Check that the cases you cite actually exist and match their citations, against official sources.">
+    <meta name="twitter:title" content="Legal Tools | Karen Safo-Barnieh">
+    <meta name="twitter:description" content="Free, practical legal tools: the Authority Checker and Upheld.">
     <meta name="twitter:image" content="https://karensafo.com/og-image.png">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://karensafo.com/tools.html">
@@ -23,102 +23,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=20260607a">
     <style>
-        /* Authority Checker, scoped so it cannot affect the rest of the site. */
-        .ac-wrap { max-width: 880px; margin: 0 auto; }
-        .ac-caveat {
-            background: var(--ivory-mid);
-            border: 1px solid rgba(184,152,106,0.45);
-            border-left: 4px solid var(--brass);
-            border-radius: 4px;
-            padding: 1.1rem 1.3rem;
-            font-size: 0.92rem;
-            color: var(--body-col);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-        .ac-caveat strong { color: var(--green); }
-        .ac-label { display: block; font-family: var(--body); font-weight: 500; color: var(--charcoal); margin-bottom: 0.6rem; font-size: 0.95rem; }
-        .ac-textarea {
-            width: 100%;
-            min-height: 220px;
-            padding: 1rem 1.1rem;
-            font-family: var(--body);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: var(--charcoal);
-            background: var(--white);
-            border: 1px solid rgba(45,45,45,0.18);
-            border-radius: 4px;
-            resize: vertical;
-        }
-        .ac-textarea:focus { outline: none; border-color: var(--green); }
-        .ac-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 1.1rem; }
-        .ac-hint { color: var(--muted); font-size: 0.85rem; }
-        .ac-link-btn {
-            background: none; border: none; padding: 0; cursor: pointer;
-            font-family: var(--body); font-size: 0.9rem; color: var(--brass); text-decoration: underline;
-        }
-        .ac-summary { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 2.2rem 0 1rem; }
-        .ac-pill { font-family: var(--body); font-size: 0.82rem; font-weight: 500; padding: 0.35rem 0.8rem; border-radius: 999px; }
-        .ac-pill .n { font-weight: 600; }
-        .ac-p-verified { background: rgba(28,58,42,0.1); color: var(--green); }
-        .ac-p-not_found { background: rgba(138,43,34,0.1); color: #8A2B22; }
-        .ac-p-name_to_confirm, .ac-p-check_manually { background: rgba(184,152,106,0.16); color: #8A6A38; }
-        .ac-p-unverified { background: rgba(136,132,124,0.14); color: var(--muted); }
-        .ac-result {
-            background: var(--white);
-            border: 1px solid rgba(45,45,45,0.1);
-            border-left: 4px solid var(--muted);
-            border-radius: 4px;
-            padding: 1rem 1.2rem;
-            margin-bottom: 0.75rem;
-        }
-        .ac-result.verified { border-left-color: var(--green); }
-        .ac-result.not_found { border-left-color: #8A2B22; }
-        .ac-result.check_manually, .ac-result.warn { border-left-color: var(--brass); }
-        .ac-result.unverified { border-left-color: var(--muted); }
-        .ac-rhead { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
-        .ac-cite { font-family: var(--body); font-weight: 600; font-size: 0.98rem; color: var(--charcoal); }
-        .ac-badge { font-family: var(--body); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
-        .verified .ac-badge { color: var(--green); }
-        .not_found .ac-badge { color: #8A2B22; }
-        .check_manually .ac-badge, .warn .ac-badge { color: #8A6A38; }
-        .unverified .ac-badge { color: var(--muted); }
-        .ac-official { font-size: 0.92rem; color: var(--charcoal); margin-top: 0.4rem; }
-        .ac-official .lbl { color: var(--muted); }
-        .ac-note { font-size: 0.86rem; color: var(--body-col); margin-top: 0.5rem; line-height: 1.55; }
-        .ac-note.warn { color: #8A6A38; font-weight: 500; }
-        .ac-meta { font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; }
-        .ac-meta a { color: var(--green); }
-        .ac-empty { color: var(--muted); font-style: italic; margin-top: 1.5rem; }
-        .ac-about { font-size: 0.9rem; color: var(--body-col); margin-top: 0.5rem; line-height: 1.55; font-style: italic; }
-        .ac-about .lbl { color: var(--muted); font-style: normal; }
-        /* Tabs */
-        .ac-tabs { display: flex; gap: 0.4rem; border-bottom: 1px solid rgba(45,45,45,0.14); margin-bottom: 2rem; }
-        .ac-tab {
-            background: none; border: none; cursor: pointer; font-family: var(--body);
-            font-size: 0.95rem; color: var(--muted); padding: 0.7rem 1.1rem;
-            border-bottom: 2px solid transparent; margin-bottom: -1px; font-weight: 500;
-        }
-        .ac-tab:hover { color: var(--charcoal); }
-        .ac-tab.active { color: var(--green); border-bottom-color: var(--green); }
-        .ac-panel[hidden] { display: none; }
-        .ac-field { margin-bottom: 1.2rem; }
-        .ac-input {
-            width: 100%; padding: 0.8rem 1.1rem; font-family: var(--body); font-size: 0.95rem;
-            color: var(--charcoal); background: var(--white); border: 1px solid rgba(45,45,45,0.18); border-radius: 4px;
-        }
-        .ac-input:focus { outline: none; border-color: var(--green); }
-        /* Cross-reference results */
-        .ac-casehead { background: var(--white); border: 1px solid rgba(45,45,45,0.1); border-left: 4px solid var(--green); border-radius: 4px; padding: 1.1rem 1.3rem; margin: 1.5rem 0 1rem; }
-        .ac-casename { font-family: var(--display); font-size: 1.4rem; color: var(--green); line-height: 1.2; }
-        .ac-passage { background: var(--white); border: 1px solid rgba(45,45,45,0.1); border-radius: 4px; padding: 0.9rem 1.2rem; margin-bottom: 0.7rem; }
-        .ac-para-n { font-family: var(--body); font-weight: 600; font-size: 0.8rem; color: var(--brass); letter-spacing: 0.04em; }
-        .ac-passage-text { font-size: 0.93rem; color: var(--charcoal); line-height: 1.6; margin-top: 0.3rem; }
-        .ac-passage-text mark { background: rgba(184,152,106,0.32); color: inherit; padding: 0 1px; }
-        .ac-xref-note { font-size: 0.86rem; color: var(--body-col); background: var(--ivory-mid); border-left: 3px solid var(--brass); padding: 0.7rem 1rem; border-radius: 3px; margin: 1.2rem 0; line-height: 1.55; }
-        .ac-cert-fields { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 1.6rem 0 0.8rem; }
-        .ac-cert-input { flex: 1 1 240px; }
+        .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; max-width: 880px; margin: 0 auto; }
+        .tool-card { display: flex; flex-direction: column; background: var(--white); border: 1px solid rgba(45,45,45,0.1); border-radius: 6px; padding: 2.2rem; text-decoration: none; color: inherit; transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+        .tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 34px rgba(28,58,42,0.12); border-color: rgba(28,58,42,0.25); }
+        .tool-tag { font-family: var(--body); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin-bottom: 0.9rem; }
+        .tool-card h2 { font-family: var(--display); font-size: 1.7rem; color: var(--green); margin: 0 0 0.7rem; line-height: 1.1; }
+        .tool-card p { font-family: var(--body); font-size: 0.95rem; color: var(--body-col); line-height: 1.65; margin: 0 0 1.6rem; flex: 1; }
+        .tool-cta { font-family: var(--body); font-weight: 600; font-size: 0.92rem; color: var(--brass); }
+        .tool-card:hover .tool-cta { color: var(--green); }
     </style>
 </head>
 <body>
@@ -141,71 +53,26 @@
     <section class="page-hero">
         <div class="container">
             <span class="section-label light reveal">Legal tools</span>
-            <h1 class="page-hero-title reveal">Authority<br><em>Checker.</em></h1>
-            <p class="page-hero-sub reveal">Courts in the United Kingdom, the United States and Germany are now sanctioning lawyers who cite cases that do not exist. Paste a skeleton, opinion or advice, and this tool confirms each authority is real and that its name matches its citation, against official sources.</p>
+            <h1 class="page-hero-title reveal">Practical tools,<br><em>freely available.</em></h1>
+            <p class="page-hero-sub reveal">Tools built to make the law easier to use and harder to get wrong. Choose one to begin.</p>
         </div>
     </section>
 
     <section class="feature-band">
         <div class="container">
-            <div class="ac-wrap">
-                <div class="ac-tabs" role="tablist">
-                    <button class="ac-tab active" id="tab-verify" type="button" role="tab">Verify citations</button>
-                    <button class="ac-tab" id="tab-xref" type="button" role="tab">Cross-reference content</button>
-                </div>
-
-                <!-- TAB 1: Verify citations exist -->
-                <div class="ac-panel" id="panel-verify" role="tabpanel">
-                    <div class="ac-caveat">
-                        <strong>Read this first.</strong> This tab confirms that a case <em>exists</em> and that its name matches its citation, and tells you what it is about. It does <em>not</em> tell you whether a case is still good law. Always open the linked official record. A green result means the case is real, not that it wins your point.
-                    </div>
-
-                    <label class="ac-label" for="ac-text">Paste your skeleton, opinion, advice, or a list of citations</label>
-                    <textarea id="ac-text" class="ac-textarea" placeholder="In Ayinde v London Borough of Haringey [2025] EWHC 1383 (Admin) ..."></textarea>
-                    <div class="ac-row">
-                        <button id="ac-check" class="btn btn-primary">Check authorities</button>
-                        <button id="ac-sample" class="ac-link-btn" type="button">Load example</button>
-                        <span class="ac-hint">UK, US and (best effort) German citations. Nothing is stored.</span>
-                    </div>
-
-                    <div id="ac-summary" class="ac-summary" hidden></div>
-                    <div id="ac-toolbar" hidden>
-                        <div class="ac-cert-fields">
-                            <input id="ac-counsel" class="ac-input ac-cert-input" type="text" placeholder="Your name (optional, for the certificate)">
-                            <input id="ac-matter" class="ac-input ac-cert-input" type="text" placeholder="Matter or case reference (optional)">
-                        </div>
-                        <div class="ac-row">
-                            <button id="ac-cert" class="btn btn-primary" type="button">Download certificate</button>
-                            <button id="ac-copy" class="ac-link-btn" type="button">Copy report for the file</button>
-                            <span id="ac-copied" class="ac-hint" hidden>Copied. Paste it into your attendance note or file record.</span>
-                        </div>
-                    </div>
-                    <div id="ac-results"></div>
-                </div>
-
-                <!-- TAB 2: Cross-reference the case content against your proposition -->
-                <div class="ac-panel" id="panel-xref" role="tabpanel" hidden>
-                    <div class="ac-caveat">
-                        <strong>How this works.</strong> Give a citation and the point you are relying on it for. This tab pulls the judgment and shows you the actual paragraphs that discuss your point, with their paragraph numbers, plus what the case is about. <em>It shows you the passage so you can confirm the case supports you. It does not decide that for you.</em> The passage is the proof.
-                    </div>
-
-                    <div class="ac-field">
-                        <label class="ac-label" for="xref-cite">Citation</label>
-                        <input id="xref-cite" class="ac-input" type="text" placeholder="[2025] EWHC 1383 (Admin)  or  347 U.S. 483">
-                    </div>
-                    <div class="ac-field">
-                        <label class="ac-label" for="xref-prop">The proposition you are citing it for</label>
-                        <textarea id="xref-prop" class="ac-textarea" style="min-height:120px;" placeholder="e.g. citing fabricated authorities can amount to contempt of court"></textarea>
-                    </div>
-                    <div class="ac-row">
-                        <button id="xref-go" class="btn btn-primary">Cross-reference</button>
-                        <button id="xref-sample" class="ac-link-btn" type="button">Load example</button>
-                        <span class="ac-hint">UK fully supported. US needs a free CourtListener token for content.</span>
-                    </div>
-                    <div id="xref-results"></div>
-                </div>
-
-                <p class="ac-meta" style="margin-top:2rem;">Sources: Find Case Law (The National Archives, UK) and CourtListener / Free Law Project (US). German lookups link to openJur and rechtsprechung-im-internet.de for manual confirmation.</p>
+            <div class="tool-grid">
+                <a class="tool-card reveal" href="/authority-checker.html">
+                    <span class="tool-tag">On this site</span>
+                    <h2>Authority Checker</h2>
+                    <p>Check that the cases you cite actually exist and match their citations, see what each case is about, and cross-reference a case against the point you are relying on it for. A defence against fabricated and mis-cited authorities, with a certificate for the file.</p>
+                    <span class="tool-cta">Open the checker &rarr;</span>
+                </a>
+                <a class="tool-card reveal" href="https://upheld.co.uk" target="_blank" rel="noopener">
+                    <span class="tool-tag">Opens upheld.co.uk</span>
+                    <h2>Upheld</h2>
+                    <p>Employment and housing problems made navigable. Understand your rights, weigh your options, and work out your next step, in plain language and at your own pace.</p>
+                    <span class="tool-cta">Go to Upheld &rarr;</span>
+                </a>
             </div>
         </div>
     </section>
@@ -235,245 +102,5 @@
     </footer>
 
     <script src="script.js?v=20260526b" defer></script>
-    <script>
-        (function () {
-            var STATUS_LABEL = { verified: "Verified", not_found: "Not found", check_manually: "Check manually", unverified: "Could not check" };
-            var SUMMARY_LABEL = Object.assign({ name_to_confirm: "Name to confirm" }, STATUS_LABEL);
-            var SUMMARY_ORDER = ["verified", "name_to_confirm", "not_found", "check_manually", "unverified"];
-            var STATUS_TEXT = { verified: "VERIFIED", not_found: "NOT FOUND (treat as suspect)", check_manually: "CHECK MANUALLY", unverified: "COULD NOT CHECK" };
-            var lastData = null;
-            var $ = function (id) { return document.getElementById(id); };
-            var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
-
-            $("ac-sample").onclick = function () {
-                $("ac-text").value =
-                    "In Ayinde v London Borough of Haringey [2025] EWHC 1383 (Admin) the Divisional Court addressed fabricated authorities. See also R (Miller) v The Prime Minister [2019] UKSC 41. The claimant wrongly relied on Smith v Jones [2025] EWHC 999999 (Admin). The US position appears in Roe v. Wade, 410 U.S. 113, and the fabricated 999 U.S. 999. Cf. BGH, Az. VI ZR 1/19.";
-            };
-
-            function buildReport(data) {
-                var now = new Date();
-                var stamp = now.toLocaleString("en-GB", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" });
-                var s = data.summary;
-                var lines = [];
-                lines.push("AUTHORITY CHECK REPORT");
-                lines.push("Generated: " + stamp);
-                lines.push("Sources: Find Case Law (The National Archives, UK); CourtListener / Free Law Project (US).");
-                lines.push("");
-                lines.push("Summary: " + s.verified + " verified, " + s.not_found + " not found, " + s.check_manually + " to check manually, " + s.name_to_confirm + " name(s) to confirm.");
-                lines.push("");
-                data.results.forEach(function (r, i) {
-                    var tag = r.status === "verified" && r.nameUnconfirmed ? "VERIFIED (CONFIRM NAME)" : (STATUS_TEXT[r.status] || r.status);
-                    lines.push((i + 1) + ". " + r.raw.replace(/\s+/g, " ") + "  [" + r.jurisdiction + "]  " + tag);
-                    if (r.citedName) lines.push("   Cited as: " + r.citedName);
-                    if (r.officialName) lines.push("   Record:   " + r.officialName);
-                    if (r.url) lines.push("   Source:   " + r.url);
-                    if (r.note) lines.push("   Note:     " + r.note);
-                    lines.push("");
-                });
-                lines.push("IMPORTANT: This check confirms that each authority exists and that its name");
-                lines.push("matches the official record. It does NOT confirm that a case remains good law");
-                lines.push("or that it supports the proposition for which it is cited. Those matters were");
-                lines.push("considered separately by counsel.");
-                return lines.join("\n");
-            }
-
-            $("ac-copy").onclick = function () {
-                if (!lastData) return;
-                var text = buildReport(lastData);
-                var done = function () { $("ac-copied").hidden = false; setTimeout(function () { $("ac-copied").hidden = true; }, 4000); };
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
-                } else { fallbackCopy(text); done(); }
-            };
-            function fallbackCopy(text) {
-                var ta = document.createElement("textarea");
-                ta.value = text; document.body.appendChild(ta); ta.select();
-                try { document.execCommand("copy"); } catch (e) {}
-                document.body.removeChild(ta);
-            }
-
-            // --- Certificate of Verification (printable / save as PDF) ---
-            function buildCertificate(data) {
-                var now = new Date();
-                var stamp = now.toLocaleString("en-GB", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" });
-                var counsel = ($("ac-counsel").value || "").trim();
-                var matter = ($("ac-matter").value || "").trim();
-                var s = data.summary;
-                var rows = data.results.map(function (r, i) {
-                    var tag = r.status === "verified" && r.nameUnconfirmed ? "Verified (confirm name)" : (STATUS_LABEL[r.status] || r.status);
-                    var rec = r.officialName ? esc(r.officialName) : "";
-                    var src = r.url ? '<a href="' + esc(r.url) + '">' + esc(r.url) + "</a>" : esc(r.source || "");
-                    return "<tr><td>" + (i + 1) + "</td><td class=cite>" + esc(r.raw.replace(/\s+/g, " ")) +
-                        "</td><td>" + esc(tag) + "</td><td>" + rec + "</td><td class=src>" + src + "</td></tr>";
-                }).join("");
-                return '<!doctype html><html><head><meta charset="utf-8"><title>Certificate of Authority Verification</title>' +
-                    '<style>' +
-                    'body{font-family:Georgia,"Times New Roman",serif;color:#1a1a1a;line-height:1.5;max-width:780px;margin:32px auto;padding:0 28px;}' +
-                    'h1{font-size:20px;text-align:center;letter-spacing:.5px;margin:0 0 4px;text-transform:uppercase;}' +
-                    '.rule{border:0;border-top:2px solid #1a1a1a;margin:10px 0 18px;}' +
-                    '.meta{font-size:13px;margin:2px 0;}' +
-                    '.meta b{display:inline-block;min-width:150px;}' +
-                    'p.statement{font-size:13px;margin:16px 0;}' +
-                    'table{width:100%;border-collapse:collapse;font-size:11.5px;margin:14px 0;}' +
-                    'th,td{border:1px solid #c9c4ba;padding:6px 8px;text-align:left;vertical-align:top;}' +
-                    'th{background:#f2ede6;}' +
-                    'td.cite{font-family:Menlo,Consolas,monospace;font-size:11px;white-space:nowrap;}' +
-                    'td.src{font-size:9.5px;word-break:break-all;} a{color:#1b4b8a;}' +
-                    '.summary{font-size:12.5px;margin:10px 0;}' +
-                    '.limit{font-size:12px;background:#f7f2e6;border:1px solid #e0d3a8;padding:10px 12px;border-radius:4px;margin:16px 0;}' +
-                    '.sign{margin-top:34px;font-size:13px;}' +
-                    '.sign .line{margin-top:26px;border-bottom:1px solid #1a1a1a;width:280px;}' +
-                    '.foot{margin-top:26px;font-size:10.5px;color:#666;text-align:center;}' +
-                    '@media print{body{margin:0;}}' +
-                    '</style></head><body>' +
-                    "<h1>Certificate of Authority Verification</h1><hr class=rule>" +
-                    '<div class="meta"><b>Date and time</b> ' + esc(stamp) + "</div>" +
-                    (counsel ? '<div class="meta"><b>Verified by</b> ' + esc(counsel) + "</div>" : "") +
-                    (matter ? '<div class="meta"><b>Matter / reference</b> ' + esc(matter) + "</div>" : "") +
-                    '<div class="meta"><b>Sources checked</b> Find Case Law (The National Archives, UK); CourtListener / Free Law Project (US)</div>' +
-                    '<p class="statement">The authorities listed below were checked against the official records identified. Each authority marked &ldquo;Verified&rdquo; was confirmed to exist on the official record at the source shown.</p>' +
-                    '<div class="summary"><b>Summary:</b> ' + s.verified + " verified, " + s.not_found + " not found, " + s.check_manually + " to check manually, " + s.name_to_confirm + " name(s) to confirm, out of " + s.total + " citation(s) detected.</div>" +
-                    "<table><thead><tr><th>#</th><th>Citation</th><th>Result</th><th>Official record</th><th>Source</th></tr></thead><tbody>" + rows + "</tbody></table>" +
-                    '<div class="limit"><b>Limitations.</b> This certificate records that the existence of each authority was checked. It does not certify that any authority remains good law (it has not been noted up), nor that any authority supports the proposition for which it is cited. Those remain matters for the person relying on the authority, who should read each judgment.</div>' +
-                    '<div class="sign">I confirm that I have inspected the official records identified above for each authority on which I rely.<div class="line"></div>Signed<div class="line"></div>Dated</div>' +
-                    '<div class="foot">Generated by the Authority Checker at karensafo.com/tools</div>' +
-                    "</body></html>";
-            }
-
-            $("ac-cert").onclick = function () {
-                if (!lastData) return;
-                var w = window.open("", "_blank");
-                if (!w) { alert("Please allow pop-ups to download the certificate."); return; }
-                w.document.write(buildCertificate(lastData));
-                w.document.close();
-                w.focus();
-                setTimeout(function () { try { w.print(); } catch (e) {} }, 350);
-            };
-
-            $("ac-check").onclick = async function () {
-                var text = $("ac-text").value.trim();
-                var btn = $("ac-check"), results = $("ac-results"), summary = $("ac-summary");
-                summary.hidden = true; $("ac-toolbar").hidden = true; $("ac-copied").hidden = true; results.innerHTML = "";
-                if (!text) { results.innerHTML = '<p class="ac-empty">Paste some text first.</p>'; return; }
-                btn.disabled = true; btn.textContent = "Checking against official records...";
-                try {
-                    var res = await fetch("/api/check", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text: text }) });
-                    var data = await res.json();
-                    if (!res.ok) throw new Error(data.error || "Request failed");
-                    render(data);
-                } catch (e) {
-                    results.innerHTML = '<p class="ac-empty">Something went wrong: ' + esc(e.message) + "</p>";
-                } finally {
-                    btn.disabled = false; btn.textContent = "Check authorities";
-                }
-            };
-
-            function render(data) {
-                lastData = data;
-                var summary = $("ac-summary"), results = $("ac-results"), s = data.summary;
-                $("ac-toolbar").hidden = !data.results.length;
-                summary.innerHTML = SUMMARY_ORDER.filter(function (k) { return s[k] > 0; }).map(function (k) {
-                    return '<span class="ac-pill ac-p-' + k + '"><span class="n">' + s[k] + "</span> " + SUMMARY_LABEL[k] + "</span>";
-                }).join("");
-                summary.hidden = false;
-                if (!data.results.length) {
-                    results.innerHTML = '<p class="ac-empty">No recognisable case citations found. Check the format, or paste the citations directly.</p>';
-                    return;
-                }
-                renderVerify(data, results);
-            }
-
-            function renderVerify(data, results) {
-                results.innerHTML = data.results.map(function (r) {
-                    var warn = r.status === "verified" && r.nameUnconfirmed;
-                    var link = r.url ? ' &middot; <a href="' + esc(r.url) + '" target="_blank" rel="noopener">open official record</a>' : "";
-                    var official = r.officialName ? '<div class="ac-official"><span class="lbl">Record:</span> ' + esc(r.officialName) + "</div>" : "";
-                    var about = r.about ? '<div class="ac-about"><span class="lbl">About:</span> ' + esc(r.about) + "</div>" : "";
-                    var cited = r.citedName ? '<div class="ac-meta">You cited it as: ' + esc(r.citedName) + "</div>" : "";
-                    var note = r.note ? '<div class="ac-note' + (warn ? " warn" : "") + '">' + esc(r.note) + "</div>" : "";
-                    var badge = warn ? "Verified, confirm name" : (STATUS_LABEL[r.status] || r.status);
-                    return '<div class="ac-result ' + r.status + (warn ? " warn" : "") + '">' +
-                        '<div class="ac-rhead"><span class="ac-cite">' + esc(r.raw.replace(/\s+/g, " ")) + '</span><span class="ac-badge">' + badge + "</span></div>" +
-                        official + about + cited + note +
-                        '<div class="ac-meta">' + esc(r.jurisdiction) + " &middot; " + esc(r.source) + link + "</div></div>";
-                }).join("");
-            }
-
-            // --- Tabs ---
-            function activate(which) {
-                var v = which === "verify";
-                $("tab-verify").classList.toggle("active", v);
-                $("tab-xref").classList.toggle("active", !v);
-                $("panel-verify").hidden = !v;
-                $("panel-xref").hidden = v;
-            }
-            $("tab-verify").onclick = function () { activate("verify"); };
-            $("tab-xref").onclick = function () { activate("xref"); };
-
-            // --- Cross-reference ---
-            $("xref-sample").onclick = function () {
-                $("xref-cite").value = "[2025] EWHC 1383 (Admin)";
-                $("xref-prop").value = "citing fabricated authorities can amount to contempt of court";
-            };
-
-            function highlight(text, terms) {
-                var out = esc(text);
-                terms.forEach(function (t) {
-                    if (!t) return;
-                    var re = new RegExp("(" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
-                    out = out.replace(re, "<mark>$1</mark>");
-                });
-                return out;
-            }
-
-            $("xref-go").onclick = async function () {
-                var citation = $("xref-cite").value.trim();
-                var proposition = $("xref-prop").value.trim();
-                var btn = $("xref-go"), box = $("xref-results");
-                box.innerHTML = "";
-                if (!citation) { box.innerHTML = '<p class="ac-empty">Enter a citation.</p>'; return; }
-                if (!proposition) { box.innerHTML = '<p class="ac-empty">Enter the proposition you are relying on the case for.</p>'; return; }
-                btn.disabled = true; btn.textContent = "Reading the judgment...";
-                try {
-                    var res = await fetch("/api/case", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ citation: citation, proposition: proposition }) });
-                    var data = await res.json();
-                    if (!res.ok) throw new Error(data.error || "Request failed");
-                    renderXref(data, box);
-                } catch (e) {
-                    box.innerHTML = '<p class="ac-empty">Something went wrong: ' + esc(e.message) + "</p>";
-                } finally {
-                    btn.disabled = false; btn.textContent = "Cross-reference";
-                }
-            };
-
-            function renderXref(data, box) {
-                if (!data.found) {
-                    var link = data.url ? ' <a href="' + esc(data.url) + '" target="_blank" rel="noopener">Open search</a>' : "";
-                    box.innerHTML = '<div class="ac-xref-note">' + esc(data.note || "Case not found.") + link + "</div>";
-                    return;
-                }
-                var html = "";
-                html += '<div class="ac-casehead">';
-                html += '<div class="ac-casename">' + esc(data.name || "Judgment") + "</div>";
-                if (data.about) html += '<div class="ac-about"><span class="lbl">About:</span> ' + esc(data.about) + "</div>";
-                html += '<div class="ac-meta">' + esc(data.jurisdiction) + " &middot; " + esc(data.source || "") +
-                    (data.url ? ' &middot; <a href="' + esc(data.url) + '" target="_blank" rel="noopener">open official record</a>' : "") + "</div>";
-                html += "</div>";
-
-                html += '<div class="ac-xref-note">These are the passages of the judgment that mention your point. Read them and confirm the case supports the proposition. The tool surfaces the evidence; the judgment of whether it supports you is yours.</div>';
-
-                if (!data.passages || !data.passages.length) {
-                    html += '<p class="ac-empty">No passage in the judgment matched your wording. Try the key legal words of your proposition, or read the record directly.' + (data.note ? " " + esc(data.note) : "") + "</p>";
-                } else {
-                    html += data.passages.map(function (p) {
-                        return '<div class="ac-passage"><span class="ac-para-n">Paragraph ' + esc(p.n) + "</span>" +
-                            '<div class="ac-passage-text">' + highlight(p.text, data.terms || []) + "</div></div>";
-                    }).join("");
-                    if (data.note) html += '<p class="ac-meta">' + esc(data.note) + "</p>";
-                }
-                box.innerHTML = html;
-            }
-        })();
-    </script>
 </body>
 </html>
