@@ -117,6 +117,8 @@
         .ac-passage-text { font-size: 0.93rem; color: var(--charcoal); line-height: 1.6; margin-top: 0.3rem; }
         .ac-passage-text mark { background: rgba(184,152,106,0.32); color: inherit; padding: 0 1px; }
         .ac-xref-note { font-size: 0.86rem; color: var(--body-col); background: var(--ivory-mid); border-left: 3px solid var(--brass); padding: 0.7rem 1rem; border-radius: 3px; margin: 1.2rem 0; line-height: 1.55; }
+        .ac-treatment { font-size: 0.87rem; color: var(--body-col); margin-top: 0.6rem; line-height: 1.55; }
+        .ac-treatment .lbl { color: var(--green); font-weight: 600; }
         .ac-cert-fields { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 1.6rem 0 0.8rem; }
         .ac-cert-input { flex: 1 1 240px; }
         .ac-caveat.ac-danger { background: rgba(138,43,34,0.06); border-color: rgba(138,43,34,0.35); border-left-color: #8A2B22; }
@@ -494,6 +496,23 @@
                 if (data.about) html += '<div class="ac-about"><span class="lbl">About:</span> ' + esc(data.about) + "</div>";
                 html += '<div class="ac-meta">' + esc(data.jurisdiction) + " &middot; " + esc(data.source || "") +
                     (data.url ? ' &middot; <a href="' + esc(data.url) + '" target="_blank" rel="noopener">open official record</a>' : "") + "</div>";
+                if (data.treatment) {
+                    var tr = data.treatment;
+                    var line;
+                    if (data.jurisdiction === "UK") {
+                        if (tr.count > 0) {
+                            var recent = (tr.recent || [])[0];
+                            line = "Cited in " + tr.count + " later judgment(s) on Find Case Law" +
+                                (recent ? ", most recent: " + esc(recent.name) + (recent.date ? " (" + esc(recent.date) + ")" : "") : "") + ".";
+                        } else {
+                            line = "No later judgments on Find Case Law were found citing this case.";
+                        }
+                    } else {
+                        line = "Cited by " + tr.count + " later opinion(s) in CourtListener.";
+                    }
+                    html += '<div class="ac-treatment"><span class="lbl">Later treatment:</span> ' + line +
+                        " This shows whether the case is still referred to. It does not confirm it remains good law, and cannot tell approval from criticism. Read how the later cases treat it.</div>";
+                }
                 html += "</div>";
 
                 html += '<div class="ac-xref-note">These are the passages of the judgment that mention your point. Read them and confirm the case supports the proposition. The tool surfaces the evidence; the judgment of whether it supports you is yours.</div>';

@@ -118,7 +118,31 @@ async function crossReferenceUk(citation, tokens) {
     about: aboutFromParas(paras),
     totalParas: paras.length,
     passages: rankPassages(paras, tokens),
+    treatment: await laterCitingUk(m[0], url),
   };
+}
+
+// Free, honest "is it still live" signal: how many later judgments on Find Case
+// Law cite this one, and how recently. This shows the case is still referred to.
+// It is NOT a good-law guarantee (no free noted-up service exists): it cannot
+// tell you whether the treatment was approval or criticism. The user must read.
+async function laterCitingUk(citation, selfUrl) {
+  try {
+    const url = `https://caselaw.nationalarchives.gov.uk/atom.xml?query=${encodeURIComponent('"' + citation.trim() + '"')}`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const xml = await res.text();
+    const self = selfUrl.replace(/\/$/, "");
+    const items = xml.split(/<entry[\s>]/).slice(1).map((e) => {
+      const name = ((e.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || "").trim();
+      const link = ((e.match(/<link[^>]*href="([^"]+)"/i) || [])[1] || "").trim();
+      const date = ((e.match(/<published[^>]*>([\s\S]*?)<\/published>/i) || e.match(/<updated[^>]*>([\s\S]*?)<\/updated>/i) || [])[1] || "").trim().slice(0, 10);
+      return { name, url: link, date };
+    }).filter((x) => x.name && x.url && x.url.replace(/\/$/, "") !== self);
+    return { count: items.length, recent: items.slice(0, 3) };
+  } catch (e) {
+    return null;
+  }
 }
 
 async function crossReferenceUs(citation, tokens, token) {
@@ -167,6 +191,7 @@ async function crossReferenceUs(citation, tokens, token) {
     about: paras.length ? aboutFromParas(paras) : null,
     totalParas: paras.length,
     passages: rankPassages(paras, tokens),
+    treatment: typeof exact.citeCount === "number" ? { count: exact.citeCount } : null,
     note: paras.length
       ? "US passages are numbered by position in the opinion, not by the court's own paragraph numbers."
       : "The full opinion text was not available to search. Open the record to read it.",
