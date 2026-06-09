@@ -243,11 +243,111 @@ function verifyDe(text) {
   return results;
 }
 
+// ---------------------------------------------------------------------------
+// UK legislation: resolve an Act by title+year on legislation.gov.uk, then
+// confirm any cited section actually exists. Catches hallucinated statutes and
+// fabricated section numbers, which the case checks alone would miss.
+// ---------------------------------------------------------------------------
+
+const ACT = /\b([A-Z][A-Za-z'’&.]+(?:\s+(?:[A-Z][A-Za-z'’&.()]+|of|the|and|for|on|in|to|no|No)){0,6}?\s+Act)\s+(\d{4})\b/g;
+
+function detectSection(text, actStart, actEnd) {
+  // "Act 1996, s 98" - section immediately after the year.
+  const after = text.slice(actEnd, actEnd + 22);
+  let m = after.match(/^[,;\s]*\b(?:ss?|sections?)\.?\s*(\d+[A-Z]{0,2})\b/i);
+  if (m) return m[1];
+  // "section 98 of the Employment Rights Act" - section must sit directly
+  // before this Act (anchored), so it cannot leak across an Act boundary.
+  const before = text.slice(Math.max(0, actStart - 50), actStart);
+  m = before.match(/\b(?:ss?|sections?)\.?\s*(\d+[A-Z]{0,2})\s+of\s+(?:the\s+)?$/i);
+  return m ? m[1] : null;
+}
+
+async function resolveAct(name, year) {
+  try {
+    const url = `https://www.legislation.gov.uk/all/data.feed?title=${encodeURIComponent(name)}&year=${year}`;
+    const res = await fetch(url);
+    if (!res.ok) return { error: res.status };
+    const xml = await res.text();
+    const entries = xml.split(/<entry[\s>]/).slice(1);
+    const want = `${name} ${year}`.toLowerCase().replace(/\s+/g, " ").trim();
+    for (const e of entries) {
+      const t = ((e.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || "").trim();
+      const l = (e.match(/<link[^>]*href="([^"]+)"/i) || [])[1] || "";
+      if (t.toLowerCase().replace(/\s+/g, " ").trim() === want) {
+        return { url: l.replace(/^http:/, "https:").replace("/id/", "/"), title: t };
+      }
+    }
+    return { entries: entries.length };
+  } catch (e) {
+    return { error: 0 };
+  }
+}
+
+async function verifyLegislation(text) {
+  const results = [];
+  const seen = new Set();
+  let m;
+  ACT.lastIndex = 0;
+  while ((m = ACT.exec(text)) !== null) {
+    const name = m[1].replace(/^the\s+/i, "").replace(/\s+/g, " ").trim();
+    const year = m[2];
+    const section = detectSection(text, m.index, m.index + m[0].length);
+    const raw = (section ? `s ${section}, ` : "") + `${name} ${year}`;
+    const key = raw.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const entry = { raw, jurisdiction: "UK", type: "legislation", source: "legislation.gov.uk" };
+    const r = await resolveAct(name, year);
+
+    if (r.error !== undefined) {
+      entry.status = "unverified";
+      entry.note = "Could not reach legislation.gov.uk. Try again or check by hand.";
+    } else if (r.url) {
+      const searchLink = `https://www.legislation.gov.uk/all?title=${encodeURIComponent(name)}`;
+      if (section) {
+        const secUrl = `${r.url}/section/${section}`;
+        let sres;
+        try { sres = await fetch(secUrl, { method: "HEAD" }); } catch (e) { sres = null; }
+        if (sres && sres.ok) {
+          entry.status = "verified";
+          entry.url = secUrl;
+          entry.officialName = `${r.title}, section ${section}`;
+        } else if (sres && sres.status === 404) {
+          entry.status = "check_manually";
+          entry.url = r.url;
+          entry.officialName = r.title;
+          entry.note = `The Act exists, but section ${section} could not be confirmed on the official record. Check it (the link opens the Act).`;
+        } else {
+          entry.status = "verified";
+          entry.url = r.url;
+          entry.officialName = r.title;
+          entry.note = `The Act is genuine; section ${section} could not be checked automatically. Confirm it on the official record.`;
+        }
+      } else {
+        entry.status = "verified";
+        entry.url = r.url;
+        entry.officialName = r.title;
+      }
+    } else if (r.entries === 0) {
+      entry.status = "not_found";
+      entry.url = `https://www.legislation.gov.uk/all?title=${encodeURIComponent(name)}`;
+      entry.note = "No legislation of that title and year on the official record. Treat as suspect until you confirm it on legislation.gov.uk (link).";
+    } else {
+      entry.status = "check_manually";
+      entry.url = `https://www.legislation.gov.uk/all?title=${encodeURIComponent(name)}`;
+      entry.note = "No exact title match. The short title or year may differ from how you cited it. Check on legislation.gov.uk (link).";
+    }
+    results.push(entry);
+  }
+  return results;
+}
+
 async function verifyText(text) {
   const token = process.env.COURTLISTENER_TOKEN || null;
-  const [uk, us] = await Promise.all([verifyUk(text), verifyUs(text, token)]);
+  const [uk, us, leg] = await Promise.all([verifyUk(text), verifyUs(text, token), verifyLegislation(text)]);
   const de = verifyDe(text);
-  const all = [...uk, ...us, ...de];
+  const all = [...uk, ...us, ...leg, ...de];
   const summary = {
     total: all.length,
     verified: all.filter((r) => r.status === "verified").length,
