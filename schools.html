@@ -136,9 +136,20 @@
             <h2 class="cta-heading reveal">Bring it to<br><em>your students.</em></h2>
             <p class="cta-text reveal">For sixth forms, colleges, law and Access courses, and debating societies. Tell us your year group, rough numbers and preferred dates, and whether you would like an in-person session, on-demand access, or both.</p>
             <p class="cta-text reveal">Email <a href="mailto:legal@karensafo.com?subject=From%20Student%20to%20Barrister%20enquiry" style="text-decoration:underline;">legal@karensafo.com</a></p>
-            <a href="mailto:legal@karensafo.com?subject=From%20Student%20to%20Barrister%20enquiry&amp;body=School%2Fcollege%3A%0AYear%20group%3A%0AApproximate%20numbers%3A%0APreferred%20dates%3A%0AIn%20person%2C%20on-demand%2C%20or%20both%3A" class="btn btn-primary reveal">Send enquiry</a>
+            <a href="mailto:legal@karensafo.com?subject=From%20Student%20to%20Barrister%20enquiry&amp;body=School%2Fcollege%3A%0AYear%20group%3A%0AApproximate%20numbers%3A%0APreferred%20dates%3A%0AIn%20person%2C%20on-demand%2C%20or%20both%3A" class="btn btn-primary reveal" id="enquiryBtn">Send enquiry</a>
+            <p class="cta-text reveal" id="enquiryNote" style="min-height:1.4em; margin-top:1.2rem;"></p>
         </div>
     </section>
+    <script>
+    (function(){
+        var b=document.getElementById('enquiryBtn'), n=document.getElementById('enquiryNote');
+        if(!b) return;
+        b.addEventListener('click', function(){
+            try{ if(navigator.clipboard){ navigator.clipboard.writeText('legal@karensafo.com'); } }catch(e){}
+            if(n){ n.innerHTML='Opening your email app&hellip; if nothing happens, email <strong>legal@karensafo.com</strong> (we have copied the address to your clipboard).'; }
+        });
+    })();
+    </script>
 
     <footer class="footer">
         <div class="container">
